@@ -1,14 +1,15 @@
-import { RouteProps } from 'react-router-dom';
-import { Role } from '@lib/api/models';
-import { ReactNode } from 'react';
-import { RouteKeys } from '@lib/constants';
-import { WritePage } from '@components/pages/write';
-import { HomePage } from '@components/pages/home/home-page';
-import { UserPage } from '@components/pages/user';
-import { LatestPage } from '@components/pages/latest';
+import {RouteProps} from 'react-router-dom';
+import {Role} from '@lib/api/models';
+import {ReactNode} from 'react';
+import {RouteKeys} from '@lib/constants';
+import {WritePage} from '@components/pages/write';
+import {HomePage} from '@components/pages/home/home-page';
+import {UserPage} from '@components/pages/user';
+import {LatestPage} from '@components/pages/latest';
 import {MapPage} from "@components/pages/map";
-import { CoursePage } from '@components/pages/course/course-page';
+import {CoursePage} from '@components/pages/course/course-page';
 import {AuthPage} from "@components/pages/auth";
+import {GradePage} from "@components/pages/grade";
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
@@ -30,7 +31,8 @@ export const RoutePaths = {
   [RouteKeys.WRITE]: '/write',
   [RouteKeys.MAP]: '/map',
   [RouteKeys.COURSE_ID]: '/course/:id',
-  [RouteKeys.AUTH]: '/auth'
+  [RouteKeys.AUTH]: '/auth',
+  [RouteKeys.GRADE]: '/grade'
 };
 
 export const routerConfig: RoutePropsType[] = [
@@ -44,11 +46,16 @@ export const routerConfig: RoutePropsType[] = [
     path: RoutePaths[RouteKeys.COURSE_ID],
     element: <CoursePage/>,
   },
-    {
-        isPrivate: false,
-        path: RoutePaths[RouteKeys.AUTH],
-        element: <AuthPage />,
-    },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.AUTH],
+    element: <AuthPage/>,
+  },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.GRADE],
+    element: <GradePage/>,
+  },
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.MAP],

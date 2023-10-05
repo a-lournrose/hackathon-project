@@ -12,5 +12,6 @@ export enum RouteKeys {
   USER_ID,
   WRITE,
   MAP,
-  AUTH
+  AUTH,
+  GRADE
 }
