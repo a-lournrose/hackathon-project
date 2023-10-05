@@ -110,7 +110,7 @@ export const AuthDialog = (props: IAuthDialogProps) => {
     <DialogAdapter
       isOpen={props.isOpen}
       onOpenChange={handleOpenChange}
-      title={dialogTitle}
+      title={dialogTitle as string}
       noClosable
     >
       <div className="flex w-full justify-center mt-5">

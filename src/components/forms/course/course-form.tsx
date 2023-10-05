@@ -1,7 +1,8 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { LoginSchema } from '@lib/utils/validations/login-schema';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { CourseSchema } from '@lib/utils/validations/course-schema';
 import { IAuthFormProps } from '@components/forms/auth/common/auth-interface';
 import {
   Form,
@@ -11,25 +12,25 @@ import {
   FormLabel,
   FormMessage,
 } from '@components/ui/form';
-import { useTranslation } from 'react-i18next';
 import { Input } from '@components/ui/input';
-import { DialogFooter } from '@components/ui/dialog';
 import { Button } from '@components/ui/button';
+import { DialogFooter } from '@components/ui/dialog';
 
-interface ILoginFormProps extends IAuthFormProps<z.infer<typeof LoginSchema>> {}
+interface ICourseFormProps
+  extends IAuthFormProps<z.infer<typeof CourseSchema>> {
+  defaultValue?: z.infer<typeof CourseSchema>;
+}
 
-export const LoginForm = (props: ILoginFormProps) => {
-  const { t } = useTranslation();
-
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
-    defaultValues: {
-      login: '',
-      password: '',
+export const CourseForm = (props: ICourseFormProps) => {
+  const form = useForm<z.infer<typeof CourseSchema>>({
+    resolver: zodResolver(CourseSchema),
+    defaultValues: props.defaultValue ?? {
+      title: '',
+      description: '',
     },
   });
 
-  const handleSubmit = async (fields: z.infer<typeof LoginSchema>) =>
+  const handleSubmit = async (fields: z.infer<typeof CourseSchema>) =>
     props.onSubmit(fields);
 
   return (
@@ -40,14 +41,14 @@ export const LoginForm = (props: ILoginFormProps) => {
       >
         <FormField
           control={form.control}
-          name="login"
+          name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('ui:label.email')}</FormLabel>
+              <FormLabel>Название курса</FormLabel>
               <FormControl>
                 <Input
-                  placeholder={t('ui:placeholder.enter')}
-                  type="email"
+                  placeholder="Введите название курса"
+                  type="text"
                   {...field}
                 />
               </FormControl>
@@ -57,30 +58,25 @@ export const LoginForm = (props: ILoginFormProps) => {
         />
         <FormField
           control={form.control}
-          name="password"
+          name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('ui:label.password')}</FormLabel>
+              <FormLabel>Краткое описание</FormLabel>
               <FormControl>
-                <Input
-                  placeholder={t('ui:placeholder.enter')}
-                  type="password"
-                  {...field}
-                />
+                <Input placeholder="Введите описание" type="text" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        {props.extraFromContent}
         <DialogFooter>
           <Button
             data={{ isLoading: props.isLoading }}
-            className="mt-5"
+            className="mt-5 w-full"
             variant="primary"
             type="submit"
           >
-            {t('ui:button.sign_in')}
+            Сохранить
           </Button>
         </DialogFooter>
       </form>

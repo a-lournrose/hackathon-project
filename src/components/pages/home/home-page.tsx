@@ -7,9 +7,13 @@ import { searchParamToNumArray } from '@lib/utils/tools';
 import { courses } from '@components/pages/home/mock/course';
 import { EducationEntityCard } from '@components/modules/education-card/education-entity-card';
 import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
+import { CreateEditCourseDialog } from '@components/dialogs/course/create-edit-course-dialog';
+import { Button } from '@components/ui/button';
+import { FiPlus } from 'react-icons/fi';
 
 export const HomePage = () => {
-  const [isOpenCreateCourseDialog, setIsOpenCreateCourseDialog] = useState<boolean>(false);
+  const [isOpenCreateCourseDialog, setIsOpenCreateCourseDialog] =
+    useState<boolean>(false);
 
   const authContext = useContext(AuthContext);
 
@@ -22,14 +26,29 @@ export const HomePage = () => {
     );
   }, [searchParams]);
 
+  const handleOpenCreateCourseDialog = () => setIsOpenCreateCourseDialog(true);
+
   return (
     <>
-      <h1 className="head-text text-left">Мои курсы</h1>
+      <CreateEditCourseDialog
+        isOpen={isOpenCreateCourseDialog}
+        onOpenChange={setIsOpenCreateCourseDialog}
+        mode="edit"
+      />
+      <div className="w-full flex items-center justify-between">
+        <h1 className="head-text text-left">Мои курсы</h1>
+      </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
         {courses.map(item => (
           <EducationEntityCard item={item} key={item.id}></EducationEntityCard>
         ))}
-        <CreateEducationEntityCard onClick={() => {}} type='course' />
+        {true && (
+          <CreateEducationEntityCard
+            onClick={handleOpenCreateCourseDialog}
+            type="course"
+          />
+        )}
+        {/*проверить роль юзера*/}
       </section>
     </>
   );

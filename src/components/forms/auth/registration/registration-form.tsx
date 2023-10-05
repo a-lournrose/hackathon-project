@@ -78,23 +78,23 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
             </FormItem>
           )}
         />
-          <FormField
-              control={form.control}
-              name="thirdName"
-              render={({ field }) => (
-                  <FormItem>
-                      <FormLabel>Отчество</FormLabel>
-                      <FormControl>
-                          <Input
-                              placeholder={t('ui:placeholder.enter')}
-                              type="text"
-                              {...field}
-                          />
-                      </FormControl>
-                      <FormMessage />
-                  </FormItem>
-              )}
-          />
+        <FormField
+          control={form.control}
+          name="thirdName"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Отчество</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder={t('ui:placeholder.enter')}
+                  type="text"
+                  {...field}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="login"
@@ -102,11 +102,7 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
             <FormItem>
               <FormLabel>Логин</FormLabel>
               <FormControl>
-                <Input
-                  placeholder={t('ui:placeholder.enter')}
-                  type="email"
-                  {...field}
-                />
+                <Input placeholder={t('ui:placeholder.enter')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
