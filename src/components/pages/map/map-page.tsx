@@ -10,7 +10,8 @@ import VectorSource from 'ol/source/Vector';
 export const MapPage = () => {
     const [map, setMap] = useState(undefined);
     const mapElement = useRef();
-    useEffect(() => {
+
+    const initMap = () => {
         const source = new VectorSource();
         const vector = new VectorLayer({
             source: source,
@@ -39,8 +40,20 @@ export const MapPage = () => {
             ]
         });
         setMap(initialMap);
-    }, [])
+    }
+
+    useEffect(() => {
+        !map && initMap();
+
+        setTimeout(() => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            //@ts-ignore
+            console.log(map.updateSize)
+            map && map.updateSize();
+        }, 1000)
+
+    }, [map]);
     return (
-        <div ref={mapElement} className='w-full h-full'></div>
+        <div ref={mapElement} className='h-screen w-60'></div>
     );
 };
