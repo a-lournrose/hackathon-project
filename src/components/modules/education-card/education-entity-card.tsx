@@ -24,7 +24,7 @@ export const EducationEntityCard = (props: IEducationCardProps) => {
             {props.item.description}
           </p>
         </div>
-        <Button onClick={handleOpenEducationEntity} variant="primary" className="justify-self-end">
+        <Button onClick={handleOpenEducationEntity} variant="primary" className="justify-self-end mt-2">
           Открыть
         </Button>
       </div>

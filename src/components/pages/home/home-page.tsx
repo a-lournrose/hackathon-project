@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { ArticleCard } from '@components/modules/article-card';
 import { useTranslation } from 'react-i18next';
-import { LocaleStorageKeys } from '@lib/constants';
 import { AuthContext } from '@app/providers/auth';
-import { CategoryList } from '@components/modules/category';
 import { useSearchParams } from 'react-router-dom';
 import { CATEGORIES_SEARCH_PARAMS } from '@components/modules/category/category-list';
 import { searchParamToNumArray } from '@lib/utils/tools';
@@ -12,7 +9,8 @@ import { EducationEntityCard } from '@components/modules/education-card/educatio
 import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
 
 export const HomePage = () => {
-  const { t } = useTranslation();
+  const [isOpenCreateCourseDialog, setIsOpenCreateCourseDialog] = useState<boolean>(false);
+
   const authContext = useContext(AuthContext);
 
   const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
@@ -31,7 +29,7 @@ export const HomePage = () => {
         {courses.map(item => (
           <EducationEntityCard item={item} key={item.id}></EducationEntityCard>
         ))}
-        <CreateEducationEntityCard type='course' />
+        <CreateEducationEntityCard onClick={() => {}} type='course' />
       </section>
     </>
   );
