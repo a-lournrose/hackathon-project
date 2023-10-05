@@ -5,6 +5,8 @@ export enum RouteKeys {
   COMPANY,
   COMPANY_ID,
   COURSE_ID,
+  THEME_ID,
+  LESSON_ID,
   ARTICLE_ID,
   VACANCY,
   VACANCY_ID,
@@ -12,5 +14,5 @@ export enum RouteKeys {
   USER_ID,
   WRITE,
   MAP,
-  AUTH
+  AUTH,
 }

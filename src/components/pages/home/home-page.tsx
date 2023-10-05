@@ -40,7 +40,13 @@ export const HomePage = () => {
       </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
         {courses.map(item => (
-          <EducationEntityCard item={item} key={item.id}></EducationEntityCard>
+          <EducationEntityCard
+            type="course"
+            title={item.title}
+            description={item.description}
+            id={item.id}
+            key={item.id}
+          />
         ))}
         {true && (
           <CreateEducationEntityCard

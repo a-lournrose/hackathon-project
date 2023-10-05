@@ -6,9 +6,10 @@ import { WritePage } from '@components/pages/write';
 import { HomePage } from '@components/pages/home/home-page';
 import { UserPage } from '@components/pages/user';
 import { LatestPage } from '@components/pages/latest';
-import {MapPage} from "@components/pages/map";
+import { MapPage } from '@components/pages/map';
 import { CoursePage } from '@components/pages/course/course-page';
-import {AuthPage} from "@components/pages/auth";
+import { AuthPage } from '@components/pages/auth';
+import { ThemePage } from '@components/pages/theme/theme-page';
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
@@ -30,7 +31,9 @@ export const RoutePaths = {
   [RouteKeys.WRITE]: '/write',
   [RouteKeys.MAP]: '/map',
   [RouteKeys.COURSE_ID]: '/course/:id',
-  [RouteKeys.AUTH]: '/auth'
+  [RouteKeys.THEME_ID]: '/theme/:id',
+  [RouteKeys.LESSON_ID]: '/lesson/:id',
+  [RouteKeys.AUTH]: '/auth',
 };
 
 export const routerConfig: RoutePropsType[] = [
@@ -42,13 +45,23 @@ export const routerConfig: RoutePropsType[] = [
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.COURSE_ID],
-    element: <CoursePage/>,
+    element: <CoursePage />,
   },
-    {
-        isPrivate: false,
-        path: RoutePaths[RouteKeys.AUTH],
-        element: <AuthPage />,
-    },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.THEME_ID],
+    element: <ThemePage />,
+  },
+  {
+    isPrivate: true,
+    path: RoutePaths[RouteKeys.LESSON_ID],
+    element: <div>dasdasdasd</div>,
+  },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.AUTH],
+    element: <AuthPage />,
+  },
   {
     isPrivate: false,
     path: RoutePaths[RouteKeys.MAP],
