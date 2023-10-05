@@ -54,6 +54,6 @@ export const MapPage = () => {
 
     }, [map]);
     return (
-        <div ref={mapElement} className='h-screen w-60'></div>
+        <div ref={mapElement} className='h-[836px] w-[1266px]'></div>
     );
 };
