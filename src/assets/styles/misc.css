@@ -5,7 +5,7 @@
 
 /* Tab */
 .tab {
-    @apply flex min-h-[50px] flex-1 items-center gap-3 bg-dark-2 text-light-2 data-[state=active]:bg-primary-500 data-[state=active]:text-light-2 !important;
+    @apply flex min-h-[50px] flex-1 items-center gap-3 bg-light-2 text-light-2 data-[state=active]:bg-primary-500 data-[state=active]:text-light-2 !important;
 }
 
 .no-focus {
@@ -18,7 +18,7 @@
 }
 
 .account-form_image-input {
-    @apply cursor-pointer border-none bg-dark-1 outline-none file:text-blue !important;
+    @apply cursor-pointer border-none bg-light-1 outline-none file:text-blue !important;
 }
 
 .account-form_input {

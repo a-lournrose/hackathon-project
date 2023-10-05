@@ -8,7 +8,7 @@ export const Preloader = () => {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="animation-all w-full h-full fixed top-0 left-0 flex flex-col items-center justify-center bg-dark-2 z-50">
+    <div className="animation-all w-full h-full fixed top-0 left-0 flex flex-col items-center justify-center bg-light-2 z-50">
       <h2 className="mb-36 text-heading2-semibold md:text-heading1-semibold">
         {t('text:loading_data')}
       </h2>

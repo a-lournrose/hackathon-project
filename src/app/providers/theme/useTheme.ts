@@ -26,7 +26,7 @@ export const useTheme = (): IThemeContext => {
   if (theme == null) throw new Error("Color scheme can't be unset.");
 
   return {
-    theme,
+    theme: 'dark',
     setTheme,
     setReverseTheme,
   };

@@ -1,8 +1,8 @@
 .ce-block--selected {
-    @apply dark:bg-dark-2
+    @apply dark:bg-light-2
 }
 .ce-inline-toolbar {
-    @apply dark:bg-dark-2 dark:border-transparent
+    @apply dark:bg-light-2 dark:border-transparent
 }
 .ce-inline-toolbar__dropdown:hover {
     @apply dark:bg-dark-3
@@ -17,7 +17,7 @@
     @apply text-primary-500
 }
 .ce-conversion-toolbar {
-    @apply dark:bg-dark-2 dark:border-transparent
+    @apply dark:bg-light-2 dark:border-transparent
 }
 .ce-conversion-tool:hover {
     @apply dark:bg-dark-3
@@ -26,7 +26,7 @@
     @apply text-black
 }
 .ce-popover {
-    @apply dark:bg-dark-2 border-transparent
+    @apply dark:bg-light-2 border-transparent
 }
 .ce-popover {
     --offset: 0;
@@ -83,7 +83,7 @@
     @apply !bg-primary-500
 }
 .tc-popover--opened {
-    @apply dark:!bg-dark-2 dark:!border-transparent
+    @apply dark:!bg-light-2 dark:!border-transparent
 }
 .tc-popover__item-icon {
     @apply dark:text-black
@@ -92,19 +92,19 @@
     @apply dark:!bg-dark-3
 }
 .tc-cell--selected {
-    @apply dark:bg-dark-2
+    @apply dark:bg-light-2
 }
 .tc-popover__item:hover {
     @apply dark:bg-dark-3
 }
 .tc-add-row:hover {
-    @apply dark:bg-dark-2
+    @apply dark:bg-light-2
 }
 .tc-row--selected {
-    @apply dark:bg-dark-2
+    @apply dark:bg-light-2
 }
 .tc-row--selected:after {
-    @apply dark:bg-dark-2
+    @apply dark:bg-light-2
 }
 
 .text-editor-readonly > div > .codex-editor > .codex-editor__redactor {

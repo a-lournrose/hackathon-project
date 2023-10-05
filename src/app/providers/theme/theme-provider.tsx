@@ -7,12 +7,7 @@ export const ThemeProvider = (props: IProviderProps) => {
   const { theme, setReverseTheme, setTheme } = useTheme();
 
   useEffect(() => {
-    switch (theme) {
-      case 'dark':
-        return document.documentElement.classList.add('dark');
-      case 'light':
-        return document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.add('light');
   }, [theme]);
 
   return (

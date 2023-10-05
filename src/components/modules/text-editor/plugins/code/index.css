@@ -11,5 +11,5 @@
     overflow-x: auto;
     resize: vertical;
 
-    @apply dark:bg-dark-2 dark:border-dark-3 text-primary-500
+    @apply dark:bg-light-2 dark:border-dark-3 text-primary-500
 }

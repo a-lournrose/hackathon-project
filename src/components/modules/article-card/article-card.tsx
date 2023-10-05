@@ -25,7 +25,7 @@ export const ArticleCard = (props: IArticleCard) => {
 
   return (
     <article
-      className={cn('flex w-full flex-col rounded-xl bg-dark-2 p-3 md:p-7')}
+      className={cn('flex w-full flex-col rounded-xl bg-light-2 p-3 md:p-7')}
     >
       <div className="flex items-start justify-between">
         <div className="flex w-full flex-1 flex-row gap-4">

@@ -52,7 +52,6 @@ export const Topbar = () => {
         {authContext.isAuth && pathname != RoutePaths[RouteKeys.WRITE] && (
           <Button
             onClick={onClickCreate}
-            variant="primary"
             size={deviceSize == 'sm' ? 'sm' : 'default'}
             data={{ leftIcon: <FiPlus /> }}
           >
