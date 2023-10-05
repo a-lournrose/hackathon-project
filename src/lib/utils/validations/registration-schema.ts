@@ -2,19 +2,22 @@ import * as z from 'zod';
 
 export const RegistrationSchema = z
   .object({
-    nickname: z
+    firstName: z
       .string()
       .nonempty('validation:error.field_required')
       .min(3, 'validation:error.min_char_number'),
-    name: z
+    lastName: z
       .string()
       .nonempty('validation:error.field_required')
       .min(3, 'validation:error.min_char_number'),
-    email: z
+      thirdName: z
+          .string()
+          .nonempty('validation:error.field_required')
+          .min(3, 'validation:error.min_char_number'),
+    login: z
       .string()
       .nonempty('validation:error.field_required')
-      .email('validation:error.wrong_email')
-      .min(6, 'validation:error.min_char_number'),
+      .min(6, 'Длина логина должна быть не меньше 6'),
     password: z
       .string()
       .nonempty('validation:error.field_required')

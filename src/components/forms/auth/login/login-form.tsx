@@ -33,7 +33,7 @@ export const LoginForm = (props: ILoginFormProps) => {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: '',
+      login: '',
       password: '',
     },
   });
@@ -49,7 +49,7 @@ export const LoginForm = (props: ILoginFormProps) => {
       >
         <FormField
           control={form.control}
-          name="email"
+          name="login"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('ui:label.email')}</FormLabel>
@@ -60,7 +60,7 @@ export const LoginForm = (props: ILoginFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage number={6} />
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -77,7 +77,7 @@ export const LoginForm = (props: ILoginFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage number={6} />
+              <FormMessage />
             </FormItem>
           )}
         />

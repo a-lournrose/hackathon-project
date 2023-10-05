@@ -4,6 +4,6 @@
 /* eslint-disable */
 
 export type LoginDto = {
-    email: string;
+    login: string;
     password: string;
 };

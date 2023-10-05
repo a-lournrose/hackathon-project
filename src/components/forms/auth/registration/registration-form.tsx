@@ -26,9 +26,10 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
   const form = useForm<z.infer<typeof RegistrationSchema>>({
     resolver: zodResolver(RegistrationSchema),
     defaultValues: {
-      name: '',
-      nickname: '',
-      email: '',
+      firstName: '',
+      lastName: '',
+      thirdName: '',
+      login: '',
       password: '',
       passwordConfirm: '',
     },
@@ -45,7 +46,7 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
       >
         <FormField
           control={form.control}
-          name="name"
+          name="firstName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('ui:label.name')}</FormLabel>
@@ -56,16 +57,16 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage number={3} />
+              <FormMessage />
             </FormItem>
           )}
         />
         <FormField
           control={form.control}
-          name="nickname"
+          name="lastName"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('ui:label.nickname')}</FormLabel>
+              <FormLabel>Фамилия</FormLabel>
               <FormControl>
                 <Input
                   placeholder={t('ui:placeholder.enter')}
@@ -73,16 +74,33 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage number={3} />
+              <FormMessage />
             </FormItem>
           )}
         />
+          <FormField
+              control={form.control}
+              name="thirdName"
+              render={({ field }) => (
+                  <FormItem>
+                      <FormLabel>Отчество</FormLabel>
+                      <FormControl>
+                          <Input
+                              placeholder={t('ui:placeholder.enter')}
+                              type="text"
+                              {...field}
+                          />
+                      </FormControl>
+                      <FormMessage />
+                  </FormItem>
+              )}
+          />
         <FormField
           control={form.control}
-          name="email"
+          name="login"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('ui:label.email')}</FormLabel>
+              <FormLabel>Логин</FormLabel>
               <FormControl>
                 <Input
                   placeholder={t('ui:placeholder.enter')}
@@ -90,7 +108,7 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage number={6} />
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -107,7 +125,7 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage number={6} />
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -124,7 +142,7 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
                   {...field}
                 />
               </FormControl>
-              <FormMessage number={6} />
+              <FormMessage />
             </FormItem>
           )}
         />

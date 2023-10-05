@@ -2,7 +2,7 @@ import type { IBaseDialogProps } from '@components/dialogs/base';
 import { DialogAdapter } from '@components/dialogs/base';
 import { LoginForm, RegistrationForm } from '@components/forms/auth';
 
-import Logo from '../../../assets/icons/favicon.svg';
+import Logo from '../../../assets/images/LOGO.svg';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { z } from 'zod';
@@ -111,9 +111,10 @@ export const AuthDialog = (props: IAuthDialogProps) => {
       isOpen={props.isOpen}
       onOpenChange={handleOpenChange}
       title={dialogTitle}
+      noClosable
     >
       <div className="flex w-full justify-center mt-5">
-        <img src={Logo} alt="logo" className="w-28" />
+        <img src={Logo} alt="logo" className="w-40" />
       </div>
       {authStrategy == 'login' && (
         <>
