@@ -11,11 +11,11 @@ interface IRootLayoutProps {
 export const RootLayout = (props: IRootLayoutProps) => {
   return (
     <>
-      <Topbar />
+      {/*<Topbar />*/}
       <main className="flex flex-row">
         <Sidebar />
         <section className="main-container">
-          <div className="w-full max-w-2xl">{props.children ?? <Outlet />}</div>
+          <div className="w-full max-w-4xl">{props.children ?? <Outlet />}</div>
         </section>
         {/*<RightSidebar/>*/}
       </main>

@@ -183,6 +183,8 @@ export default {
         blue: '#0095F6',
         red: '#FF5A5A',
         green: '#02d448',
+        desc: '#52525B',
+        lime: '#365314',
         'navbar-menu': 'rgba(16, 16, 18, 0.6)',
         'dark-1': '#000000',
         'dark-2': '#121417',

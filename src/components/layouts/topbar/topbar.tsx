@@ -49,15 +49,6 @@ export const Topbar = () => {
             alt="logo"
           />
         </div>
-        {authContext.isAuth && pathname != RoutePaths[RouteKeys.WRITE] && (
-          <Button
-            onClick={onClickCreate}
-            size={deviceSize == 'sm' ? 'sm' : 'default'}
-            data={{ leftIcon: <FiPlus /> }}
-          >
-            {t('ui:button.create')}
-          </Button>
-        )}
         {authContext.isAuth ? (
           <div className="flex items-center gap-1">
             <LogoutTrigger from="topbar" />

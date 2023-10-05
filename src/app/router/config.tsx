@@ -7,6 +7,7 @@ import { HomePage } from '@components/pages/home/home-page';
 import { UserPage } from '@components/pages/user';
 import { LatestPage } from '@components/pages/latest';
 import {MapPage} from "@components/pages/map";
+import { CoursePage } from '@components/pages/course/course-page';
 import {AuthPage} from "@components/pages/auth";
 
 export type RoutePropsType = RouteProps & {
@@ -28,7 +29,8 @@ export const RoutePaths = {
   [RouteKeys.ARTICLE_ID]: '/article/:id',
   [RouteKeys.WRITE]: '/write',
   [RouteKeys.MAP]: '/map',
-  [RouteKeys.AUTH]: '/auth',
+  [RouteKeys.COURSE_ID]: '/course/:id',
+  [RouteKeys.AUTH]: '/auth'
 };
 
 export const routerConfig: RoutePropsType[] = [
@@ -39,8 +41,18 @@ export const routerConfig: RoutePropsType[] = [
   },
   {
     isPrivate: false,
-    path: RoutePaths[RouteKeys.AUTH],
-    element: <AuthPage />,
+    path: RoutePaths[RouteKeys.COURSE_ID],
+    element: <CoursePage/>,
+  },
+    {
+        isPrivate: false,
+        path: RoutePaths[RouteKeys.AUTH],
+        element: <AuthPage />,
+    },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.MAP],
+    element: <MapPage />,
   },
   {
     isPrivate: true,
