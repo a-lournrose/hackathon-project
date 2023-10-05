@@ -13,6 +13,7 @@ export interface IDialogAdapterProps {
   onOpenChange: (open: boolean) => void;
   title?: string;
   description?: boolean;
+  noClosable?: boolean;
   children: ReactNode;
   footer?: ReactNode;
 }
