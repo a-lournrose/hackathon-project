@@ -178,7 +178,7 @@ export default {
         300: '3',
       },
       colors: {
-        'primary-500': '#000000',
+        'primary-500': '#84CC16',
         'secondary-500': '#FFB620',
         blue: '#0095F6',
         red: '#FF5A5A',
