@@ -21,7 +21,7 @@ export interface IDialogAdapterProps {
 export const DialogAdapter = (props: IDialogAdapterProps) => {
   return (
     <Dialog open={props.isOpen} onOpenChange={props.onOpenChange}>
-      <DialogContent>
+      <DialogContent noClosable={props.noClosable}>
         {(props.title || props.description) && (
           <DialogHeader>
             {props.title && <DialogTitle>{props.title}</DialogTitle>}

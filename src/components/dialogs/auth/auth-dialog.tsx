@@ -111,6 +111,7 @@ export const AuthDialog = (props: IAuthDialogProps) => {
       isOpen={props.isOpen}
       onOpenChange={handleOpenChange}
       title={dialogTitle}
+      noClosable
     >
       <div className="flex w-full justify-center mt-5">
         <img src={Logo} alt="logo" className="w-28" />
