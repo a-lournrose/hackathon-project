@@ -1,0 +1,1 @@
+export type EducationEntityType = 'course' | 'theme' | 'lesson'

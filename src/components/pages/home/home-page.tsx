@@ -8,7 +8,8 @@ import { useSearchParams } from 'react-router-dom';
 import { CATEGORIES_SEARCH_PARAMS } from '@components/modules/category/category-list';
 import { searchParamToNumArray } from '@lib/utils/tools';
 import { courses } from '@components/pages/home/mock/course';
-import { EducationCard } from '@components/modules/education-card/education-card';
+import { EducationEntityCard } from '@components/modules/education-card/education-entity-card';
+import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
 
 export const HomePage = () => {
   const { t } = useTranslation();
@@ -25,12 +26,12 @@ export const HomePage = () => {
 
   return (
     <>
-      <h1 className="head-text text-left">{t('ui:title.home')}</h1>
-      <CategoryList withSearchParams />
+      <h1 className="head-text text-left">Мои курсы</h1>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
         {courses.map(item => (
-          <EducationCard item={item} key={item.id}></EducationCard>
+          <EducationEntityCard item={item} key={item.id}></EducationEntityCard>
         ))}
+        <CreateEducationEntityCard type='course' />
       </section>
     </>
   );
