@@ -38,7 +38,8 @@ export const Sidebar = () => {
               onClick={handleClickLink(link.route)}
               className={cn(
                 'leftsidebar_link items-center [&>svg]:text-primary-500',
-                isActive && 'bg-primary-500 hover:bg-primary-500/90 [&>p]:text-white [&>svg]:text-white'
+                isActive &&
+                  'bg-primary-500 hover:bg-primary-500/90 [&>p]:text-white [&>svg]:text-white'
               )}
             >
               {link.icon}
@@ -55,7 +56,9 @@ export const Sidebar = () => {
             <AvatarImage src={getAvatar(authContext.user)} />
             <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>
           </Avatar>
-          <h3 className="text-black font-semibold text-lg text-body1-bold truncate">{authContext.user?.name} {authContext.user?.nickname}</h3>
+          <h3 className="text-black font-semibold text-lg text-body1-bold truncate">
+            {authContext.user?.name} {authContext.user?.nickname}
+          </h3>
         </div>
       )}
       {/*<LogoutTrigger from="sidebar" />*/}
