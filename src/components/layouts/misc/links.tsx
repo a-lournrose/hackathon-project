@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { LuBuilding2 } from 'react-icons/lu';
 import { RouteKeys } from '@lib/constants';
 import { RoutePaths } from '@app/router';
+import { BsGlobe } from 'react-icons/bs';
 
 interface ISidebarLink {
   route: string;
@@ -15,6 +16,11 @@ export const sidebarLinks: ISidebarLink[] = [
     route: RoutePaths[RouteKeys.HOME],
     label: 'ui:sidebar.home',
     icon: <FiHome size={24} />,
+  },
+  {
+    route: RoutePaths[RouteKeys.MAP],
+    label: 'Карта',
+    icon: <BsGlobe size={24} />
   },
   {
     route: RoutePaths[RouteKeys.LATEST],

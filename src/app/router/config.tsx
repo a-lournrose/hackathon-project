@@ -27,6 +27,7 @@ export const RoutePaths = {
   [RouteKeys.ARTICLE_ID]: '/article/:id',
   [RouteKeys.WRITE]: '/write',
   [RouteKeys.MAP]: '/map',
+  [RouteKeys.COURSE_ID]: '/course/:id'
 };
 
 export const routerConfig: RoutePropsType[] = [

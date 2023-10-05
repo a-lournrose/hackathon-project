@@ -25,11 +25,13 @@ export const Sidebar = () => {
               key={link.label}
               onClick={handleClickLink(link.route)}
               className={cn(
-                'leftsidebar_link',
+                'leftsidebar_link items-center',
                 isActive && 'bg-primary-500 hover:bg-primary-500/90'
               )}
             >
               {link.icon}
+              {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+              {/*@ts-ignore*/}
               <p className="text-light-1 max-lg:hidden">{t(link.label)}</p>
             </div>
           );
