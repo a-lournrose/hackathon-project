@@ -4,9 +4,13 @@ import { FiChevronLeft } from 'react-icons/fi';
 import { lessons } from './mock/lesson';
 import { EducationEntityCard } from '@components/modules/education-card/education-entity-card';
 import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
-import React from 'react';
+import React, { useState } from 'react';
+import { CreateEditThemeDialog } from '@components/dialogs/theme/create-edit-course-dialog';
 
 export const ThemePage = () => {
+
+  const [isOpenEditThemeDialog, setIsOpenEditThemeDialog] = useState(false);
+
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
@@ -15,8 +19,14 @@ export const ThemePage = () => {
 
   return (
     <>
+      <CreateEditThemeDialog
+        mode="edit"
+        isOpen={isOpenEditThemeDialog}
+        onOpenChange={setIsOpenEditThemeDialog}
+        id={Number(id)}
+      />
       <div className="w-full flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 justify-between">
           <Button
             className="-ml-3"
             onClick={handleBack}
@@ -27,9 +37,14 @@ export const ThemePage = () => {
           </Button>
           <h1 className="head-text text-left">Уроки</h1>
         </div>
-        <Button size="lg" onClick={handleRedirectToWrite} variant="primary">
-          Добавить урок
-        </Button>
+        <div className='flex items-center space-x-3'>
+          <Button size="lg" onClick={() => setIsOpenEditThemeDialog(true)} variant="primary">
+            Редактировать тему
+          </Button>
+          <Button size="lg" onClick={handleRedirectToWrite} variant="primary">
+            Добавить урок
+          </Button>
+        </div>
       </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
         {lessons.map(item => (

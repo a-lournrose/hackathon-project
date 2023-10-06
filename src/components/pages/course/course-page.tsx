@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { themes } from '@components/pages/course/mock/theme';
 import { EducationEntityCard } from '@components/modules/education-card/education-entity-card';
 import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
@@ -18,6 +18,7 @@ export const CoursePage = () => {
 
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+
   const [isOpenCreateThemeDialog, setIsOpenCreateThemeDialog] =
     useState<boolean>(false);
   const [isOpenEditCourseDialog, setIsOpenEditCourseDialog] =
@@ -36,6 +37,7 @@ export const CoursePage = () => {
       />
       <CreateEditCourseDialog
         mode="edit"
+        id={Number(id)}
         isOpen={isOpenEditCourseDialog}
         onOpenChange={setIsOpenEditCourseDialog}
       />

@@ -3,23 +3,26 @@ import { z } from 'zod';
 import { ThemeSchema } from '@lib/utils/validations/theme-schema';
 import { ThemeForm } from '@components/forms/theme/create-edit-theme-form';
 import { Theme } from '@lib/api/models';
-import { api } from '@lib/api/plugins';
+import { api, client } from '@lib/api/plugins';
 
 type CourseDialogMode = 'edit' | 'create';
 
 interface ICreateEditCourseDialogProps extends IBaseDialogProps {
   defaultValue?: Theme;
   mode: CourseDialogMode;
+  id?: number;
 }
 //TODO add models
 export const CreateEditThemeDialog = (props: ICreateEditCourseDialogProps) => {
   const handleCreate = async (data: Theme) => {
-    await api.theme.create(data);
+    await api.theme.create({themeId: 0, ...data});
   };
 
-  const handleEdite = (data: Theme) => {
+  const handleEdite = async (data: Theme) => {
+    console.log(data)
     switch (props.mode) {
       case 'edit':
+        await client.put('/Theme', data);
     }
   };
   // TODO: после подключения танстака переинвалидировать кэш
