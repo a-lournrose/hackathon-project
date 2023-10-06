@@ -7,7 +7,7 @@ import type { Lesson } from './Lesson';
 
 export type UpdateThemeResponseDto = {
     themeId?: number;
-    tiile?: string | null;
+    title?: string | null;
     description?: string | null;
     lessons?: Array<Lesson> | null;
 };
