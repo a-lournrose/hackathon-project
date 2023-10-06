@@ -28,7 +28,7 @@ export abstract class ApiControllerBase<
   protected async process<T>(
     request: Promise<T>,
     onSuccess?: (model: T) => void,
-    onError?: (error) => void,
+    onError?: (error: unknown) => void,
     exclusive: boolean | null = null
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore

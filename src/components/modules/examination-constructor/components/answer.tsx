@@ -14,7 +14,7 @@ interface IAnswerPropsProps {
   onDelete: (id: number) => void;
 }
 
-export const Answer = (props: IAnswerPropsProps) => {
+export const AnswerDto = (props: IAnswerPropsProps) => {
   const { t } = useTranslation();
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -31,8 +31,8 @@ export const Answer = (props: IAnswerPropsProps) => {
     <div className="flex items-center gap-3 justify-start items-start w-full">
       <Checkbox checked={props.isRight} onCheckedChange={handleChangeChecked} />
       <Input
-        size="sm"
-        variant="ghost"
+        //size="sm"
+        //variant="ghost"
         value={props.name}
         onChange={handleChangeName}
         placeholder={t('ui:placeholder.come_up_answer')}
@@ -41,8 +41,8 @@ export const Answer = (props: IAnswerPropsProps) => {
         onBlur={() => setIsFocus(false)}
       />
       {!isFocus && (
-        <Button size="icon-sm" variant="ghost" onClick={handleDelete}>
-          <FiX height={15} width={15} />
+        <Button size="icon" variant="ghost" onClick={handleDelete}>
+          <FiX size={18} />
         </Button>
       )}
     </div>

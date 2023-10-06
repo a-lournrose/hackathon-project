@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { Button } from '@components/ui/button';
-import { Answer as AnswerComponent } from '@components/modules/examination-constructor/components/answer';
+import { AnswerDto as AnswerComponent } from '@components/modules/examination-constructor/components/answer';
 import { FiPlus } from 'react-icons/fi';
-import { Answer } from '@lib/api/models';
+import { AnswerDto } from '../mock/types';
 
 interface IAnswerGeneratorProps {
   questionId: number;
   disabled?: boolean;
-  answers: Answer[];
+  answers: AnswerDto[];
   onAddEmptyAnswer: (questionId: number) => void;
   onChangeAnswerIsRight: (
     newValue: boolean,
@@ -36,7 +36,7 @@ export const AnswerGenerator = (props: IAnswerGeneratorProps) => {
   const isDisabledAddNewAnswer = () =>
     props.answers.length == 0
       ? false
-      : !props.answers[props.answers.length - 1]?.name?.trim().length;
+      : !props.answers[props.answers.length - 1]?.title?.trim().length;
 
   const handleAddEmptyAnswer = () => props.onAddEmptyAnswer(props.questionId);
 
@@ -47,19 +47,19 @@ export const AnswerGenerator = (props: IAnswerGeneratorProps) => {
           key={item.id}
           answerId={item.id}
           isRight={item.isRight}
-          name={item.name}
+          name={item.title}
           onDelete={handleDeleteAnswer}
           onChangeIsRight={handleChangeAnswerIsRight}
           onChangeName={handleChangeAnswerName}
         />
       ))}
       <Button
-        size="icon-sm"
+        size="icon"
         variant="ghost"
         onClick={handleAddEmptyAnswer}
         disabled={isDisabledAddNewAnswer() || props.disabled}
       >
-        <FiPlus />
+        <FiPlus size={18} />
       </Button>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { forwardRef, Ref, useImperativeHandle, useRef } from 'react';
-import { QuestionDto } from '@components/modules/examination-constructor/mock/question-dto';
+import { QuestionDto } from './mock/types';
 import { useTranslation } from 'react-i18next';
 import { ExaminationValidationErrorKeys } from '@components/modules/examination-constructor/constants';
 import { toast } from '@components/ui/use-toast';
@@ -62,10 +62,13 @@ export const ExaminationConstructor = forwardRef<
   };
 
   const handleGetAndValidateData = () => {
+    console.log(555);
     try {
       validateExam(questionGeneratorRef.current?.questions);
+      console.log(questionGeneratorRef.current?.questions, 111);
       return questionGeneratorRef.current?.questions;
     } catch (e) {
+      console.log(e, 666);
       errorHandler((e as Error).message);
       return undefined;
     }

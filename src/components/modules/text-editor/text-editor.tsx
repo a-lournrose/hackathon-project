@@ -30,23 +30,19 @@ export const TextEditor = forwardRef<ITextEditorForwardRef, ITextEditorProps>(
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const editorCore = React.useRef<EditorCore | null>(null);
 
-    const handleInitialize = React.useCallback(
-      (instance: EditorCore) => {
-        if (editorCore.current) editorCore.current = instance;
-        if (props.withHeading)
-          instance.render({
-            time: new Date().getTime(),
-            version: '1.0',
-            blocks: [withHeadingTemplate],
-          });
-      },
-      [props.withHeading]
-    );
+    const handleInitialize = React.useCallback((instance: EditorCore) => {
+      editorCore.current = instance;
+      if (props.withHeading)
+        instance.render({
+          time: new Date().getTime(),
+          version: '2.28.0',
+          blocks: [withHeadingTemplate],
+        });
+    }, []);
 
     const handleSave = React.useCallback(async () => {
-      setIsLoading(true);
-      const savedData = await editorCore?.current?.save();
-      setIsLoading(false);
+      const savedData = await editorCore.current?.save();
+      console.log(savedData);
       return savedData;
     }, []);
 

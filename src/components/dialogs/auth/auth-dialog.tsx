@@ -73,16 +73,19 @@ export const AuthDialog = (props: IAuthDialogProps) => {
   const handleLogin = async (dto: z.infer<typeof LoginSchema>) => {
     setIsWrongCredentials(false);
     setIsLoading(true);
-    await api.auth.login(dto, handleLoginSuccess, handleAuthError);
+    const res = await api.auth.login(dto, handleLoginSuccess, handleAuthError);
     setIsLoading(false);
-    navigate('/');
+    res && navigate('/');
   };
 
   const handleRegistration = async (
     dto: z.infer<typeof RegistrationSchema>
   ) => {
     setIsLoading(true);
-    if ('passwordConfirm' in dto) delete dto.passwordConfirm;
+    if ('passwordConfirm' in dto)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      delete dto.passwordConfirm;
     await api.registration.registration(
       {
         ...dto,

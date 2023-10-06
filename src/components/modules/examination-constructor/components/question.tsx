@@ -4,12 +4,12 @@ import { Input } from '@components/ui/input';
 import { Button } from '@components/ui/button';
 import { FiX } from 'react-icons/fi';
 import { AnswerGenerator } from '@components/modules/examination-constructor/components/answer-generator';
-import { Answer } from '@lib/api/models';
+import { AnswerDto } from '../mock/types';
 
 interface IQuestionProps {
   questionId: number;
   name: string;
-  answers: Answer[];
+  answers: AnswerDto[];
   onChangeQuestionName: (newValue: string, id: number) => void;
   onDeleteQuestion: (id: number) => void;
   onAddEmptyAnswer: (questionId: number) => void;
@@ -26,7 +26,7 @@ interface IQuestionProps {
   onDeleteAnswer: (questionId: number, answerId: number) => void;
 }
 
-export const Question = (props: IQuestionProps) => {
+export const QuestionDto = (props: IQuestionProps) => {
   const { t } = useTranslation();
 
   const [isFocus, setIsFocus] = useState<boolean>(false);
@@ -46,11 +46,11 @@ export const Question = (props: IQuestionProps) => {
         />
         {!isFocus && (
           <Button
-            size="icon-sm"
+            size="icon"
             variant="ghost"
             onClick={() => props.onDeleteQuestion(props.questionId)}
           >
-            <FiX height={15} width={15} />
+            <FiX size={18} />
           </Button>
         )}
       </div>

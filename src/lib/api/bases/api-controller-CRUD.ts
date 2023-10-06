@@ -2,8 +2,6 @@ import { ApiControllerGet } from '@/lib/api/bases/api-controller-get';
 import { IApiControllerCrud } from '@/lib/api/interfaces';
 import { AxiosInstance } from 'axios';
 import { LockerModel } from '@/lib/api/types';
-import { AxiosError } from 'axios';
-import { BaseProcessedError } from '@lib/api/models';
 
 export abstract class ApiControllerCRUD<
     T extends Object,
@@ -26,7 +24,7 @@ export abstract class ApiControllerCRUD<
   async create(
     model: TCreate,
     onSuccess?: (model: T) => void,
-    onError?: (error: BaseProcessedError) => void,
+    onError?: (error: unknown) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process<T>(
@@ -40,7 +38,7 @@ export abstract class ApiControllerCRUD<
   async delete(
     id: number,
     onSuccess?: (result: boolean) => void,
-    onError?: (error: BaseProcessedError) => void,
+    onError?: (error: unknown) => void,
     exclusive?: boolean
   ): Promise<boolean> {
     return await this.process<boolean>(
@@ -55,7 +53,7 @@ export abstract class ApiControllerCRUD<
     id: number,
     model: TUpdate,
     onSuccess?: (model: T) => void,
-    onError?: (error: BaseProcessedError) => void,
+    onError?: (error: unknown) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process(
@@ -70,7 +68,7 @@ export abstract class ApiControllerCRUD<
     id: number,
     model: TUpdatePartially,
     onSuccess?: (model: T) => void,
-    onError?: (error: BaseProcessedError) => void,
+    onError?: (error: unknown) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process(
