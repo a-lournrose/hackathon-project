@@ -19,7 +19,11 @@ export const CreateEditCourseDialog = (props: ICreateEditCourseDialogProps) => {
     <DialogAdapter
       isOpen={props.isOpen}
       onOpenChange={props.onOpenChange}
-      title={props.mode == 'edit' ? 'Редактирование курса' : 'Создание курса'}
+      title={
+        props.mode == 'edit'
+          ? 'Редактирование программы'
+          : 'Создание программы обучения'
+      }
     >
       <CourseForm
         onSubmit={handleCreate}

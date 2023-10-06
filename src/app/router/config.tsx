@@ -59,11 +59,6 @@ export const routerConfig: RoutePropsType[] = [
   },
   {
     isPrivate: false,
-    path: RoutePaths[RouteKeys.AUTH],
-    element: <AuthPage />,
-  },
-  {
-    isPrivate: false,
     path: RoutePaths[RouteKeys.MAP],
     element: <MapPage />,
   },

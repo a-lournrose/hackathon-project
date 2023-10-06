@@ -4,6 +4,7 @@ import { FiChevronLeft } from 'react-icons/fi';
 import { lessons } from './mock/lesson';
 import { EducationEntityCard } from '@components/modules/education-card/education-entity-card';
 import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
+import React from 'react';
 
 export const ThemePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,11 +15,21 @@ export const ThemePage = () => {
 
   return (
     <>
-      <div className="w-full flex items-center justify-start gap-2">
-        <Button onClick={handleBack} variant="ghost" size="icon">
-          <FiChevronLeft size={25} />
+      <div className="w-full flex items-center justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <Button
+            className="-ml-3"
+            onClick={handleBack}
+            variant="ghost"
+            size="icon"
+          >
+            <FiChevronLeft size={25} />
+          </Button>
+          <h1 className="head-text text-left">Уроки</h1>
+        </div>
+        <Button size="lg" onClick={handleRedirectToWrite} variant="primary">
+          Добавить урок
         </Button>
-        <h1 className="head-text text-left">Уроки</h1>
       </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
         {lessons.map(item => (
@@ -30,12 +41,12 @@ export const ThemePage = () => {
             id={item.id}
           />
         ))}
-        {true && (
-          <CreateEducationEntityCard
-            onClick={handleRedirectToWrite}
-            type="lesson"
-          />
-        )}
+        {/*{true && (*/}
+        {/*  <CreateEducationEntityCard*/}
+        {/*    onClick={handleRedirectToWrite}*/}
+        {/*    type="lesson"*/}
+        {/*  />*/}
+        {/*)}*/}
       </section>
     </>
   );

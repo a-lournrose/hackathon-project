@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes } from 'react-router-dom';
 import { RootLayout } from '@components/layouts';
 import { routerConfig } from '@app/router/config';
 import { ProtectedRoute } from '@app/router/protected-route';
+import { AuthPage } from '@components/pages/auth';
 
 export const Router = () => {
   return (
@@ -21,6 +22,15 @@ export const Router = () => {
             }
           />
         ))}
+      </Route>
+      <Route
+        element={
+          <div className="h-screen w-screen bg-white">
+            <Outlet />
+          </div>
+        }
+      >
+        <Route path="/auth" element={<AuthPage />} />
       </Route>
     </Routes>
   );

@@ -37,7 +37,7 @@ export const EducationEntityCard = (props: IEducationCardProps) => {
   };
 
   return (
-    <div className="flex-1 min-w-[300px] bg-light-2 p-0 flex flex-col gap-0 rounded-lg overflow-hidden">
+    <div className="flex-1 max-w-[48%] min-w-[300px] bg-light-2 p-0 flex flex-col gap-0 rounded-lg overflow-hidden">
       <img src={handleGetPreview()} alt="preview" />
       <div className="flex flex-col p-5 gap-2">
         <div className="flex flex-col gap-1">

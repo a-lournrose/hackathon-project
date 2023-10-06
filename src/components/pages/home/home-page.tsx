@@ -10,6 +10,7 @@ import { CreateEducationEntityCard } from '@components/modules/education-card/cr
 import { CreateEditCourseDialog } from '@components/dialogs/course/create-edit-course-dialog';
 import { Button } from '@components/ui/button';
 import { FiPlus } from 'react-icons/fi';
+import { EmptyContent } from '@components/shared/empty-content/empty-content';
 
 export const HomePage = () => {
   const [isOpenCreateCourseDialog, setIsOpenCreateCourseDialog] =
@@ -33,27 +34,39 @@ export const HomePage = () => {
       <CreateEditCourseDialog
         isOpen={isOpenCreateCourseDialog}
         onOpenChange={setIsOpenCreateCourseDialog}
-        mode="edit"
+        mode="create"
       />
       <div className="w-full flex items-center justify-between">
-        <h1 className="head-text text-left">Мои курсы</h1>
+        <h1 className="head-text text-left">Мои программы обучения</h1>
+
+        <Button
+          size="lg"
+          onClick={handleOpenCreateCourseDialog}
+          variant="primary"
+        >
+          Добавить программу обучения
+        </Button>
       </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
-        {courses.map(item => (
-          <EducationEntityCard
-            type="course"
-            title={item.title}
-            description={item.description}
-            id={item.id}
-            key={item.id}
-          />
-        ))}
-        {true && (
-          <CreateEducationEntityCard
-            onClick={handleOpenCreateCourseDialog}
-            type="course"
-          />
+        {courses.length ? (
+          courses.map(item => (
+            <EducationEntityCard
+              type="course"
+              title={item.title}
+              description={item.description}
+              id={item.id}
+              key={item.id}
+            />
+          ))
+        ) : (
+          <EmptyContent />
         )}
+        {/*{true && (*/}
+        {/*  <CreateEducationEntityCard*/}
+        {/*    onClick={handleOpenCreateCourseDialog}*/}
+        {/*    type="course"*/}
+        {/*  />*/}
+        {/*)}*/}
         {/*проверить роль юзера*/}
       </section>
     </>

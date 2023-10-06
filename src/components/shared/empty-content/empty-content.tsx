@@ -11,7 +11,7 @@ export const EmptyContent = (props: IEmptyContent) => {
   return (
     <div className="w-full h-full flex flex-col justify-center items-center gap-4">
       <img src="/empty-content.png" alt="Not found image" />
-      <h3 className="md:text-body-medium text-gray-1">
+      <h3 className="text-lime text-heading4-semibold">
         {props.text ?? t('ui:subheader.empty_content')}
       </h3>
     </div>

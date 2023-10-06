@@ -1,8 +1,7 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { CourseSchema } from '@lib/utils/validations/course-schema';
+import { ThemeSchema } from '@lib/utils/validations/theme-schema';
 import { IAuthFormProps } from '@components/forms/auth/common/auth-interface';
 import {
   Form,
@@ -16,21 +15,20 @@ import { Input } from '@components/ui/input';
 import { Button } from '@components/ui/button';
 import { DialogFooter } from '@components/ui/dialog';
 
-interface ICourseFormProps
-  extends IAuthFormProps<z.infer<typeof CourseSchema>> {
-  defaultValue?: z.infer<typeof CourseSchema>;
+interface ICourseFormProps extends IAuthFormProps<z.infer<typeof ThemeSchema>> {
+  defaultValue?: z.infer<typeof ThemeSchema>;
 }
 
-export const CourseForm = (props: ICourseFormProps) => {
-  const form = useForm<z.infer<typeof CourseSchema>>({
-    resolver: zodResolver(CourseSchema),
+export const ThemeForm = (props: ICourseFormProps) => {
+  const form = useForm<z.infer<typeof ThemeSchema>>({
+    resolver: zodResolver(ThemeSchema),
     defaultValues: props.defaultValue ?? {
       title: '',
       description: '',
     },
   });
 
-  const handleSubmit = async (fields: z.infer<typeof CourseSchema>) =>
+  const handleSubmit = async (fields: z.infer<typeof ThemeSchema>) =>
     props.onSubmit(fields);
 
   return (
@@ -44,10 +42,10 @@ export const CourseForm = (props: ICourseFormProps) => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Название программы обучения</FormLabel>
+              <FormLabel>Название темы</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Введите название программы обучения"
+                  placeholder="Введите название темы"
                   type="text"
                   {...field}
                 />

@@ -14,13 +14,13 @@ interface ISidebarLink {
 export const sidebarLinks: ISidebarLink[] = [
   {
     route: RoutePaths[RouteKeys.HOME],
-    label: 'ui:sidebar.home',
+    label: 'Программы обучения',
     icon: <FiHome size={24} />,
   },
   {
     route: RoutePaths[RouteKeys.MAP],
     label: 'Карта',
-    icon: <BsGlobe size={24} />
+    icon: <BsGlobe size={24} />,
   },
   {
     route: RoutePaths[RouteKeys.LATEST],
