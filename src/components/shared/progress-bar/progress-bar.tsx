@@ -6,8 +6,8 @@ interface IProgressBar {
   lessons?: boolean[];
 }
 
-const progressStyles = 'z-40 w-full h-4 bg-slate-100';
-const markStyles = 'z-50 h-16 w-16 min-w-[4rem] bg-light-1 rounded-full flex items-center justify-center text-[48px] text-white font-bold text-primary-500';
+const progressStyles = 'z-2 w-full h-4 bg-slate-100';
+const markStyles = 'z-3 h-16 w-16 min-w-[4rem] bg-light-1 rounded-full flex items-center justify-center text-[48px] text-white font-bold text-primary-500';
 
 const ProgressBar:FC<IProgressBar> = ({mark, lessons}) => {
 

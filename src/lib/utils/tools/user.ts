@@ -1,5 +1,5 @@
 import { Account } from '@lib/api/models';
-import Avatar from '@assets/images/Avatar.png';
+import AvatarImageSrc from '@assets/images/Avatar.png';
 
 export const getFallback = (user?: Account): string =>
   user
@@ -7,4 +7,4 @@ export const getFallback = (user?: Account): string =>
       user.userInfo?.secondName?.toUpperCase()
     : '';
 
-export const getAvatar = (user?: unknown): string | undefined => Avatar;
+export const getAvatar = (user?: unknown): string | undefined => AvatarImageSrc;

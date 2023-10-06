@@ -9,6 +9,7 @@ import { getAvatar, getFallback } from '@lib/utils/tools';
 import Logo from '@assets/images/LOGO.svg';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
+import AvatarImageSrc from '@assets/images/Aavatar.png';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
@@ -54,11 +55,11 @@ export const Sidebar = () => {
       {authContext.isAuth && (
         <div className="px-6 flex items-center gap-2">
           <Avatar>
-            <AvatarImage src={getAvatar(authContext.user)} />
+            <AvatarImage src={AvatarImageSrc} />
             <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>
           </Avatar>
           <h3 className="text-black font-semibold text-lg text-body1-bold truncate">
-            {authContext.user?.name} {authContext.user?.nickname}
+            {authContext.user?.userInfo?.secondName} {((authContext.user?.userInfo?.firstName) ?? '')[0]}. {((authContext.user?.userInfo?.thirdName) ?? '')[0]}.
           </h3>
         </div>
       )}
