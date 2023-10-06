@@ -24,7 +24,7 @@ export const LoginForm = (props: ILoginFormProps) => {
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      login: '',
+      username: '',
       password: '',
     },
   });
@@ -40,7 +40,7 @@ export const LoginForm = (props: ILoginFormProps) => {
       >
         <FormField
           control={form.control}
-          name="login"
+          name="username"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('ui:label.email')}</FormLabel>

@@ -31,6 +31,7 @@ export const Router = () => {
         }
       >
         <Route path="/auth" element={<AuthPage />} />
+        <Route path="/auth/teacher" element={<AuthPage onlyForTeacher />} />
       </Route>
     </Routes>
   );

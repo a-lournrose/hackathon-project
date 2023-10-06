@@ -34,22 +34,23 @@ export const RoutePaths = {
   [RouteKeys.THEME_ID]: '/theme/:id',
   [RouteKeys.LESSON_ID]: '/lesson/:id',
   [RouteKeys.AUTH]: '/auth',
+  [RouteKeys.AUTH_TEACHER]: '/auth/teacher',
   [RouteKeys.GRADE]: '/grade',
 };
 
 export const routerConfig: RoutePropsType[] = [
   {
-    isPrivate: false,
+    isPrivate: true,
     path: RoutePaths[RouteKeys.HOME],
     element: <HomePage />,
   },
   {
-    isPrivate: false,
+    isPrivate: true,
     path: RoutePaths[RouteKeys.COURSE_ID],
     element: <CoursePage />,
   },
   {
-    isPrivate: false,
+    isPrivate: true,
     path: RoutePaths[RouteKeys.THEME_ID],
     element: <ThemePage />,
   },
@@ -59,12 +60,12 @@ export const routerConfig: RoutePropsType[] = [
     element: <div>dasdasdasd</div>,
   },
   {
-    isPrivate: false,
+    isPrivate: true,
     path: RoutePaths[RouteKeys.GRADE],
     element: <GradePage />,
   },
   {
-    isPrivate: false,
+    isPrivate: true,
     path: RoutePaths[RouteKeys.MAP],
     element: <MapPage />,
   },

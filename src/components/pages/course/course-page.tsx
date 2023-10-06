@@ -7,8 +7,15 @@ import { Button } from '@components/ui/button';
 import { FiChevronLeft } from 'react-icons/fi';
 import { CreateEditThemeDialog } from '@components/dialogs/theme/create-edit-course-dialog';
 import { CreateEditCourseDialog } from '@components/dialogs/course/create-edit-course-dialog';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@lib/api/plugins';
 
 export const CoursePage = () => {
+  /*const { isLoading, data } = useQuery({
+    queryKey: ['themes'],
+    queryFn: async () => await api.theme.getGetAll(),
+  });*/
+
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [isOpenCreateThemeDialog, setIsOpenCreateThemeDialog] =

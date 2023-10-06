@@ -1,24 +1,37 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { AuthContext } from '@app/providers/auth';
-import { useSearchParams } from 'react-router-dom';
-import { CATEGORIES_SEARCH_PARAMS } from '@components/modules/category/category-list';
-import { searchParamToNumArray } from '@lib/utils/tools';
-import { courses } from '@components/pages/home/mock/course';
 import { EducationEntityCard } from '@components/modules/education-card/education-entity-card';
-import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
 import { CreateEditCourseDialog } from '@components/dialogs/course/create-edit-course-dialog';
 import { Button } from '@components/ui/button';
-import { FiPlus } from 'react-icons/fi';
 import { EmptyContent } from '@components/shared/empty-content/empty-content';
 import ProgressCard from '@components/modules/progress-card/progress-card';
+import { useQuery } from '@tanstack/react-query';
+import { api } from '@lib/api/plugins';
+import { PreloaderContext } from '@app/providers/preloader';
 export const HomePage = () => {
+  const myCoursesQuery = useQuery({
+    queryKey: ['my-courses'],
+    queryFn: async () => await api.course.getAll(),
+  });
+
+  const allCoursesQuery = useQuery({
+    queryKey: ['all-courses'],
+    queryFn: async () => await api.course.getAll(),
+  });
+
   const [isOpenCreateCourseDialog, setIsOpenCreateCourseDialog] =
     useState<boolean>(false);
 
   const authContext = useContext(AuthContext);
+  const preloaderContext = useContext(PreloaderContext);
 
   const handleOpenCreateCourseDialog = () => setIsOpenCreateCourseDialog(true);
+
+  useEffect(() => {
+    if (myCoursesQuery.isFetching || allCoursesQuery.isFetching)
+      preloaderContext.setVisible(true);
+    else preloaderContext.setVisible(false);
+  }, [myCoursesQuery.isFetching, allCoursesQuery.isFetching]);
 
   return (
     <>
@@ -40,13 +53,14 @@ export const HomePage = () => {
         </Button>
       </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
-        {courses.length ? (
-          courses.map(item => (
+        {/*courses*/}
+        {myCoursesQuery.data?.length ? (
+          myCoursesQuery.data.map(item => (
             <EducationEntityCard
               type="course"
-              title={item.title}
-              description={item.description}
-              id={item.id}
+              title={item.title ?? ''}
+              description={item.description ?? ''}
+              id={item.id ?? 1}
               key={item.id}
             />
           ))
@@ -60,6 +74,22 @@ export const HomePage = () => {
         {/*  />*/}
         {/*)}*/}
         {/*проверить роль юзера*/}
+        <h1 className="head-text text-left">Все программы обучения</h1>
+        <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
+          {allCoursesQuery.data?.length ? (
+            allCoursesQuery.data.map(item => (
+              <EducationEntityCard
+                type="course"
+                title={item.title ?? ''}
+                description={item.description ?? ''}
+                id={item.id ?? 1}
+                key={item.id}
+              />
+            ))
+          ) : (
+            <EmptyContent />
+          )}
+        </section>
       </section>
     </>
   );

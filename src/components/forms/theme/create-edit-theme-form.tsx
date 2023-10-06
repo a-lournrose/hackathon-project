@@ -14,17 +14,18 @@ import {
 import { Input } from '@components/ui/input';
 import { Button } from '@components/ui/button';
 import { DialogFooter } from '@components/ui/dialog';
+import { Theme } from '@lib/api/models';
 
-interface ICourseFormProps extends IAuthFormProps<z.infer<typeof ThemeSchema>> {
-  defaultValue?: z.infer<typeof ThemeSchema>;
+interface ICourseFormProps extends IAuthFormProps<Theme> {
+  defaultValue?: Theme;
 }
 
 export const ThemeForm = (props: ICourseFormProps) => {
   const form = useForm<z.infer<typeof ThemeSchema>>({
     resolver: zodResolver(ThemeSchema),
-    defaultValues: props.defaultValue ?? {
-      title: '',
-      description: '',
+    defaultValues: {
+      title: props.defaultValue?.title ?? '',
+      description: props.defaultValue?.description ?? '',
     },
   });
 

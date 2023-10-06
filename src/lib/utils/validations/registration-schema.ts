@@ -6,15 +6,15 @@ export const RegistrationSchema = z
       .string()
       .nonempty('validation:error.field_required')
       .min(3, 'validation:error.min_char_number'),
-    lastName: z
+    secondName: z
       .string()
       .nonempty('validation:error.field_required')
       .min(3, 'validation:error.min_char_number'),
-      thirdName: z
-          .string()
-          .nonempty('validation:error.field_required')
-          .min(3, 'validation:error.min_char_number'),
-    login: z
+    thirdName: z
+      .string()
+      .nonempty('validation:error.field_required')
+      .min(3, 'validation:error.min_char_number'),
+    username: z
       .string()
       .nonempty('validation:error.field_required')
       .min(6, 'Длина логина должна быть не меньше 6'),

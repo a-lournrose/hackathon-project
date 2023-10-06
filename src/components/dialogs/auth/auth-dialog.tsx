@@ -14,30 +14,34 @@ import {
 import { RegistrationSchema } from '@lib/utils/validations/registration-schema';
 import { toast } from '@components/ui/use-toast';
 import { api } from '@lib/api/plugins';
-import { BaseProcessedError, LoginResponseType } from '@lib/api/models';
 import { LocaleStorageKeys } from '@lib/constants';
 import { AuthContext } from '@app/providers/auth';
+import { RegistrationResponseDto } from '@lib/api/types/registration-response-dto';
+import { LoginResponseDto } from '@lib/api/types/login-response-dto';
+import { RegistrationRequestDto } from '@lib/api/models';
+import { useNavigate } from 'react-router-dom';
 
 type AuthStrategyType = 'login' | 'registration';
 
 interface IAuthDialogProps extends IBaseDialogProps {
   strategy?: AuthStrategyType;
+  onlyForTeacher?: boolean;
 }
 
 export const AuthDialog = (props: IAuthDialogProps) => {
   const { t } = useTranslation();
   const authContext = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const [authStrategy, setAuthStrategy] = useState<AuthStrategyType>(
-    props.strategy ?? 'login'
+    props.onlyForTeacher ? 'registration' : props.strategy ?? 'login'
   );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isWrongCredentials, setIsWrongCredentials] = useState<boolean>(false);
 
-  const handleLoginSuccess = (response: LoginResponseType) => {
-    authContext.setUser(response.user);
-    authContext.setAccessToken(response.access);
-    localStorage.setItem(LocaleStorageKeys.JWT, response.access);
+  const handleLoginSuccess = (response: LoginResponseDto) => {
+    authContext.setAccessToken(response.token);
+    localStorage.setItem(LocaleStorageKeys.JWT, response.token);
     toast({
       variant: 'success',
       title: t('toast:success.auth_success'),
@@ -45,20 +49,20 @@ export const AuthDialog = (props: IAuthDialogProps) => {
     handleOpenChange(false);
   };
 
-  const handleRegistrationSuccess = (response: LoginResponseType) => {
-    authContext.setUser(response.user);
-    authContext.setAccessToken(response.access);
-    localStorage.setItem(LocaleStorageKeys.JWT, response.access);
+  const handleRegistrationSuccess = (response: RegistrationResponseDto) => {
+    authContext.setUser(response.account);
+    authContext.setAccessToken(response.token);
+    localStorage.setItem(LocaleStorageKeys.JWT, response.token);
     toast({
       variant: 'success',
       title: t('toast:success.registration_success'),
     });
     handleOpenChange(false);
+    navigate('/');
   };
 
-  const handleAuthError = (error: BaseProcessedError) => {
-    if (error.statusCode == 401 && authStrategy == 'login')
-      setIsWrongCredentials(true);
+  const handleAuthError = () => {
+    if (authStrategy == 'login') setIsWrongCredentials(true);
     else
       toast({
         variant: 'destructive',
@@ -71,14 +75,19 @@ export const AuthDialog = (props: IAuthDialogProps) => {
     setIsLoading(true);
     await api.auth.login(dto, handleLoginSuccess, handleAuthError);
     setIsLoading(false);
+    navigate('/');
   };
 
   const handleRegistration = async (
     dto: z.infer<typeof RegistrationSchema>
   ) => {
     setIsLoading(true);
-    await api.auth.registration(
-      dto,
+    if ('passwordConfirm' in dto) delete dto.passwordConfirm;
+    await api.registration.registration(
+      {
+        ...dto,
+        role: props.onlyForTeacher ? 'Teacher' : 'Student',
+      } as RegistrationRequestDto,
       handleRegistrationSuccess,
       handleAuthError
     );
@@ -116,7 +125,7 @@ export const AuthDialog = (props: IAuthDialogProps) => {
       <div className="flex w-full justify-center mt-5">
         <img src={Logo} alt="logo" className="w-40" />
       </div>
-      {authStrategy == 'login' && (
+      {!props.onlyForTeacher && authStrategy == 'login' && (
         <>
           <LoginForm
             extraFromContent={
@@ -133,9 +142,11 @@ export const AuthDialog = (props: IAuthDialogProps) => {
       {authStrategy == 'registration' && (
         <RegistrationForm
           extraFromContent={
-            <RegistrationExtraContent
-              onClick={handleSetAuthStrategy('login')}
-            />
+            !props.onlyForTeacher && (
+              <RegistrationExtraContent
+                onClick={handleSetAuthStrategy('login')}
+              />
+            )
           }
           isLoading={isLoading}
           onSubmit={handleRegistration}

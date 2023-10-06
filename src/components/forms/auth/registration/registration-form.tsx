@@ -27,9 +27,9 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
     resolver: zodResolver(RegistrationSchema),
     defaultValues: {
       firstName: '',
-      lastName: '',
+      secondName: '',
       thirdName: '',
-      login: '',
+      nickname: '',
       password: '',
       passwordConfirm: '',
     },
@@ -63,7 +63,7 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
         />
         <FormField
           control={form.control}
-          name="lastName"
+          name="secondName"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Фамилия</FormLabel>
@@ -97,10 +97,10 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
         />
         <FormField
           control={form.control}
-          name="login"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Логин</FormLabel>
+              <FormLabel>Почта</FormLabel>
               <FormControl>
                 <Input placeholder={t('ui:placeholder.enter')} {...field} />
               </FormControl>

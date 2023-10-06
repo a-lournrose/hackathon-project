@@ -20,16 +20,20 @@ export class CourseController extends ApiControllerCRUD<
   }
 
   async getGetAll(
-    handleSuccess: (model: LoginRequestDto) => void,
-    handleError: () => void
+    handleSuccess?: (model: Course[]) => void,
+    handleError?: () => void
   ) {
-    return await this.process(this.get('all'), handleSuccess, handleError);
+    return await this.process<Course[]>(
+      this.get('all'),
+      handleSuccess,
+      handleError
+    );
   }
 
   async getGetById(
     id: number,
-    handleSuccess: (model: LoginRequestDto) => void,
-    handleError: () => void
+    handleSuccess?: (model: LoginRequestDto) => void,
+    handleError?: () => void
   ) {
     return await this.process(
       this.get(id.toString()),

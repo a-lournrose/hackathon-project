@@ -1,14 +1,15 @@
 import { createContext } from 'react';
 import { LocaleStorageKeys } from '@lib/constants';
-import { Role, User } from '@lib/api/models';
+import { Account, Role } from '@lib/api/models';
 
 interface IAuthContext {
   isAuth?: boolean;
+  isAuthWithInfo?: boolean;
   accessToken?: string;
   setAccessToken: (token?: string) => void;
-  role?: Role;
-  user?: User;
-  setUser: (user?: User) => void;
+  role?: string;
+  user?: Account;
+  setUser: (user?: Account) => void;
 }
 
 export const AuthContext = createContext<IAuthContext>({

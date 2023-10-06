@@ -11,14 +11,14 @@ export class AccountController extends ApiControllerCRUD<
   unknown
 > {
   constructor(client: AxiosInstance, lockerModel: LockerModel) {
-    super(client, lockerModel, '');
+    super(client, lockerModel, 'Account');
   }
 
   async getMe(
-    handleSuccess: (model: Account) => void,
-    handleError: () => void
+    handleSuccess?: (model: Account) => void,
+    handleError?: () => void
   ) {
-    return await this.process(this.get('get'), handleSuccess, handleError);
+    return await this.process(this.get('me'), handleSuccess, handleError);
   }
 
   async getGetById(
