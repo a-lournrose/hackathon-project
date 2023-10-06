@@ -8,8 +8,8 @@ import { UserPage } from '@components/pages/user';
 import { LatestPage } from '@components/pages/latest';
 import { MapPage } from '@components/pages/map';
 import { CoursePage } from '@components/pages/course/course-page';
-import { AuthPage } from '@components/pages/auth';
 import { ThemePage } from '@components/pages/theme/theme-page';
+import { GradePage } from '@components/pages/grade';
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
@@ -34,6 +34,7 @@ export const RoutePaths = {
   [RouteKeys.THEME_ID]: '/theme/:id',
   [RouteKeys.LESSON_ID]: '/lesson/:id',
   [RouteKeys.AUTH]: '/auth',
+  [RouteKeys.GRADE]: '/grade',
 };
 
 export const routerConfig: RoutePropsType[] = [
@@ -56,6 +57,11 @@ export const routerConfig: RoutePropsType[] = [
     isPrivate: true,
     path: RoutePaths[RouteKeys.LESSON_ID],
     element: <div>dasdasdasd</div>,
+  },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.GRADE],
+    element: <GradePage />,
   },
   {
     isPrivate: false,

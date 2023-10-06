@@ -11,21 +11,12 @@ import { CreateEditCourseDialog } from '@components/dialogs/course/create-edit-c
 import { Button } from '@components/ui/button';
 import { FiPlus } from 'react-icons/fi';
 import { EmptyContent } from '@components/shared/empty-content/empty-content';
-
+import ProgressCard from '@components/modules/progress-card/progress-card';
 export const HomePage = () => {
   const [isOpenCreateCourseDialog, setIsOpenCreateCourseDialog] =
     useState<boolean>(false);
 
   const authContext = useContext(AuthContext);
-
-  const [selectedCategoryIds, setSelectedCategoryIds] = useState<number[]>([]);
-  const [searchParams] = useSearchParams();
-
-  useEffect(() => {
-    setSelectedCategoryIds(
-      searchParamToNumArray(searchParams.get(CATEGORIES_SEARCH_PARAMS)) ?? []
-    );
-  }, [searchParams]);
 
   const handleOpenCreateCourseDialog = () => setIsOpenCreateCourseDialog(true);
 
@@ -36,6 +27,7 @@ export const HomePage = () => {
         onOpenChange={setIsOpenCreateCourseDialog}
         mode="create"
       />
+      <ProgressCard value={0.82} />
       <div className="w-full flex items-center justify-between">
         <h1 className="head-text text-left">Мои программы обучения</h1>
 
