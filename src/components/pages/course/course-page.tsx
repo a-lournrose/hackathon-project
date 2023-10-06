@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { themes } from '@components/pages/course/mock/theme';
 import { EducationEntityCard } from '@components/modules/education-card/education-entity-card';
 import { CreateEducationEntityCard } from '@components/modules/education-card/create-education-entity-card';
@@ -9,12 +9,15 @@ import { CreateEditThemeDialog } from '@components/dialogs/theme/create-edit-cou
 import { CreateEditCourseDialog } from '@components/dialogs/course/create-edit-course-dialog';
 import { useQuery } from '@tanstack/react-query';
 import { api } from '@lib/api/plugins';
+import { AuthContext } from '@app/providers/auth';
 
 export const CoursePage = () => {
   /*const { isLoading, data } = useQuery({
     queryKey: ['themes'],
     queryFn: async () => await api.theme.getGetAll(),
   });*/
+
+  const authContext = useContext(AuthContext);
 
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -53,7 +56,7 @@ export const CoursePage = () => {
           </Button>
           <h1 className="head-text text-left">Темы</h1>
         </div>
-        <div className="flex gap-2 items-center">
+        {authContext.role === 'Teacher' && <div className="flex gap-2 items-center">
           <Button
             size="lg"
             onClick={handleOpenCreateThemeDialog}
@@ -68,7 +71,7 @@ export const CoursePage = () => {
           >
             Редактировать программу обучения
           </Button>
-        </div>
+        </div>}
       </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
         {themes.map(item => (

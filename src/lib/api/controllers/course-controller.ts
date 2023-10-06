@@ -19,18 +19,6 @@ export class CourseController extends ApiControllerCRUD<
     super(client, lockerModel, 'Course');
   }
 
-  async updateCource(
-    data: UpdateCourseRequestDto,
-    handleSuccess?: (model: Course[]) => void,
-    handleError?: () => void
-  ) {
-    return await this.process<Course[]>(
-      this.put<T>(id.toString(), { data: model }),
-      handleSuccess,
-      handleError
-    );
-  }
-
   async getGetAll(
     handleSuccess?: (model: Course[]) => void,
     handleError?: () => void

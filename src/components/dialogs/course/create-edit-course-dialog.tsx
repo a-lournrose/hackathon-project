@@ -34,7 +34,8 @@ export const CreateEditCourseDialog = (props: ICreateEditCourseDialogProps) => {
   };
 
   const handleCreateCourse = async (data: Course) => {
-    await api.course.create(data);
+    console.log(data);
+    await api.course.create({themes: [], ...data});
     handleSuccessSubmitAction();
   };
 
