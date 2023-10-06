@@ -1,7 +1,10 @@
-import { User } from '@lib/api/models';
+import { Account } from '@lib/api/models';
+import Avatar from '@assets/images/Avatar.png';
 
-export const getFallback = (user?: User): string =>
-  user ? user.name.slice(0, 2).toUpperCase() : '';
+export const getFallback = (user?: Account): string =>
+  user
+    ? user.userInfo?.firstName?.toUpperCase() +
+      user.userInfo?.secondName?.toUpperCase()
+    : '';
 
-export const getAvatar = (user?: User): string | undefined =>
-  user?.userAvatar?.staticField?.url ?? user?.defaultAvatar?.url;
+export const getAvatar = (user?: unknown): string | undefined => Avatar;

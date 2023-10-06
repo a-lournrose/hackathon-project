@@ -1,10 +1,18 @@
 import React from 'react';
-import {AuthDialog} from "@components/dialogs/auth";
+import { AuthDialog } from '@components/dialogs/auth';
 
-export const AuthPage = () => {
-    return (
-        <div>
-            <AuthDialog isOpen={true} onOpenChange={() => {}}/>
-        </div>
-    );
+interface IAuthPageProps {
+  onlyForTeacher?: boolean;
+}
+
+export const AuthPage = (props: IAuthPageProps) => {
+  return (
+    <div>
+      <AuthDialog
+        onlyForTeacher={props.onlyForTeacher as boolean}
+        isOpen
+        onOpenChange={() => {}}
+      />
+    </div>
+  );
 };

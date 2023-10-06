@@ -4,16 +4,6 @@
 /* eslint-disable */
 
 export type Role = {
-    /**
-     * id of role
-     */
-    id: number;
-    /**
-     * name of role
-     */
-    name: Record<string, any>;
-    /**
-     * description of model
-     */
-    description: Record<string, any>;
+    id?: number;
+    title?: string | null;
 };
