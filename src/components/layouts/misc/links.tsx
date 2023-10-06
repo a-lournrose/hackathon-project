@@ -33,31 +33,5 @@ export const sidebarLinks: ISidebarLink[] = [
     route: RoutePaths[RouteKeys.DRAW],
     label: 'Рисование',
     icon: <MdDraw size={24} />,
-  },
-  {
-    route: RoutePaths[RouteKeys.LATEST],
-    label: 'ui:sidebar.latest',
-    icon: <FiClock size={24} />,
-  },
-  {
-    route: RoutePaths[RouteKeys.SUBSCRIPTIONS],
-    label: 'ui:sidebar.subscriptions',
-    icon: <FiList size={24} />,
-    isPrivate: true,
-  },
-  {
-    route: RoutePaths[RouteKeys.COMPANY],
-    label: 'ui:sidebar.companies',
-    icon: <LuBuilding2 size={24} />,
-  },
-  {
-    route: RoutePaths[RouteKeys.VACANCY],
-    label: 'ui:sidebar.vacancies',
-    icon: <FiClipboard size={24} />,
-  },
-  {
-    route: RoutePaths[RouteKeys.USER],
-    label: 'ui:sidebar.users',
-    icon: <FiUsers size={24} />,
-  },
+  }
 ];

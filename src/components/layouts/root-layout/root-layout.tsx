@@ -19,7 +19,7 @@ export const RootLayout = (props: IRootLayoutProps) => {
       <main className="flex flex-row">
         <Sidebar />
         <section className="main-container">
-          <div className={cn('w-full', location.pathname != '/map' && 'max-w-4xl')}>{props.children ?? <Outlet />}</div>
+          <div className={cn('w-full', location.pathname != '/map' && location.pathname != '/draw' && 'max-w-4xl')}>{props.children ?? <Outlet />}</div>
         </section>
         {/*<RightSidebar/>*/}
       </main>

@@ -70,6 +70,11 @@ export const routerConfig: RoutePropsType[] = [
   },
   {
     isPrivate: true,
+    path: RoutePaths[RouteKeys.GRADE_ID],
+    element: <GradeIdPage />,
+  },
+  {
+    isPrivate: true,
     path: RoutePaths[RouteKeys.MAP],
     element: <MapPage />,
   },
