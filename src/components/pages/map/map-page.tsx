@@ -54,6 +54,8 @@ export const MapPage = () => {
 
     }, [map]);
     return (
-        <div ref={mapElement} className='h-[836px] w-[1266px]'></div>
+      <div className='w-full h-full flex items-start justify-center flex-col'>
+          <div ref={mapElement} className='h-[600px] w-[1000px]'></div>
+      </div>
     );
 };

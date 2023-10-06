@@ -10,6 +10,7 @@ import { CreateEducationEntityCard } from '@components/modules/education-card/cr
 import { CreateEditCourseDialog } from '@components/dialogs/course/create-edit-course-dialog';
 import { Button } from '@components/ui/button';
 import { FiPlus } from 'react-icons/fi';
+import ProgressCard from '@components/modules/progress-card/progress-card';
 
 export const HomePage = () => {
   const [isOpenCreateCourseDialog, setIsOpenCreateCourseDialog] =
@@ -35,6 +36,7 @@ export const HomePage = () => {
         onOpenChange={setIsOpenCreateCourseDialog}
         mode="edit"
       />
+      <ProgressCard value={0.82}/>
       <div className="w-full flex items-center justify-between">
         <h1 className="head-text text-left">Мои курсы</h1>
       </div>
