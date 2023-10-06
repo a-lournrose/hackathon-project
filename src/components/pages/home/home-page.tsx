@@ -28,6 +28,7 @@ export const HomePage = () => {
         mode="create"
       />
       <ProgressCard value={0.78} />
+      <ProgressCard value={0.78} once/>
       <div className="w-full flex items-center justify-between">
         <h1 className="head-text text-left">Мои программы обучения</h1>
 

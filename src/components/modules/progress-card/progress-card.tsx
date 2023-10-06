@@ -3,9 +3,10 @@ import ProgressBar from '@components/shared/progress-bar/progress-bar';
 
 interface IProgressCard {
   value: number;
+  once?: boolean;
 }
 
-const ProgressCard:FC<IProgressCard> = ({value}) => {
+const ProgressCard:FC<IProgressCard> = ({value, once}) => {
   const mark = value*100;
   return (
     <div className='h-72 w-full bg-white rounded-2xl my-10 p-10'>
@@ -22,16 +23,16 @@ const ProgressCard:FC<IProgressCard> = ({value}) => {
               <div className='text-[20px] font-bold'>балла</div>
             </div>
           </div>
-          <div>
+          {!once && <div>
             <div className='text-primary-500'>осталось</div>
             <div className='flex items-end space-x-2'>
               <div className='text-[48px] font-bold leading-none text-primary-500'>{100 - mark}</div>
               <div className='text-[20px] font-bold'>баллов</div>
             </div>
-          </div>
+          </div>}
         </div>
       </div>
-      <ProgressBar mark={mark}/>
+      <ProgressBar lessons={[true, true, false, false, false]}/>
     </div>
   );
 };
