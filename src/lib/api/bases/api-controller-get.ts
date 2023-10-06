@@ -5,8 +5,6 @@ import {
 } from '@lib/api/interfaces/i-api-controller-get';
 import { AxiosInstance } from 'axios';
 import { Autocomplete, LockerModel, PagingModel } from '@/lib/api/types';
-import { AxiosError } from 'axios';
-import { BaseProcessedError } from '@lib/api/models';
 
 export abstract class ApiControllerGet<
     T,
@@ -29,7 +27,7 @@ export abstract class ApiControllerGet<
   public async getById(
     id: number,
     onSuccess?: (model: T) => void,
-    onError?: (error: BaseProcessedError) => void,
+    onError?: (error: unknown) => void,
     exclusive?: boolean
   ): Promise<T> {
     return await this.process<T>(
@@ -42,39 +40,10 @@ export abstract class ApiControllerGet<
 
   public async getAll(
     opts?: getOptions<T, TFilter>,
-    onSuccess?: (models: PagingModel<T>) => void,
-    onError?: (error: BaseProcessedError) => void,
+    onSuccess?: (models: T[]) => void,
+    onError?: (error: unknown) => void,
     exclusive?: boolean
-  ): Promise<PagingModel<T>> {
-    return await this.process<PagingModel<T>>(
-      this.get('', { params: this.transformParamsOptions(opts) }),
-      onSuccess,
-      onError,
-      exclusive
-    );
-  }
-
-  async autocomplete(
-    opts?: getOptions<T, TFilter>,
-    onSuccess?: (models: PagingModel<Autocomplete>) => void,
-    onError?: (error: BaseProcessedError) => void,
-    exclusive?: boolean
-  ): Promise<PagingModel<Autocomplete>> {
-    return await this.process<PagingModel<Autocomplete>>(
-      this.get('autocomplete', { params: this.transformParamsOptions(opts) }),
-      onSuccess,
-      onError,
-      exclusive
-    );
-  }
-
-  private transformParamsOptions(opts?: getOptions<T, TFilter>) {
-    return (opts?.filter ?? []).reduce(
-      (acc, item) =>
-        Object.assign(acc, {
-          [`${item.key as string}.${item.type}`]: item.value,
-        }),
-      opts?.paging ?? {}
-    );
+  ): Promise<T[]> {
+    return await this.process<T[]>(this.get(''), onSuccess, onError, exclusive);
   }
 }

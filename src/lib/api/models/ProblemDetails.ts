@@ -3,7 +3,4 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
-    id?: number;
-    title?: string | null;
-};
+export type ProblemDetails = Record<string, any>;

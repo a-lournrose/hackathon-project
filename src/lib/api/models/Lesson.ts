@@ -3,7 +3,11 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
+import type { Theme } from './Theme';
+
+export type Lesson = {
     id?: number;
     title?: string | null;
+    articleBody?: string | null;
+    theme?: Theme;
 };

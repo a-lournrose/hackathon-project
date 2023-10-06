@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
-    id?: number;
+export type CreateCourseRequestDto = {
     title?: string | null;
+    description?: string | null;
 };

@@ -3,7 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
-    id?: number;
+import type { GptResponseAnswerDto } from './GptResponseAnswerDto';
+
+export type GptResponseQuestionDto = {
     title?: string | null;
+    answers?: Array<GptResponseAnswerDto> | null;
 };

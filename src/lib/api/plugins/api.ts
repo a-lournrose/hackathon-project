@@ -1,34 +1,24 @@
 import { AxiosInstance } from 'axios';
 import { LockerModel } from '@/lib/api/types';
 import { mutexLocker } from '@/lib/api/plugins/locker';
-import {
-  AuthController,
-  CategoryController,
-  UserController,
-  ExaminationController,
-  StaticFieldController,
-  QuestionController,
-  AnswerController,
-} from '@/lib/api/controllers';
+import {} from '@/lib/api/controllers';
 import { client } from '@/lib/api/plugins/client';
+import { AccountController } from '@lib/api/controllers/account-controller';
+import { AuthorizationController } from '@lib/api/controllers/authorization-controller';
+import { CourseController } from '@lib/api/controllers/course-controller';
+import { ThemeController } from '@lib/api/controllers/theme-controller';
 
 class Api {
-  auth: AuthController;
-  user: UserController;
-  staticField: StaticFieldController;
-  category: CategoryController;
-  examination: ExaminationController;
-  question: QuestionController;
-  answer: AnswerController;
+  public account: AccountController;
+  public auth: AuthorizationController;
+  public course: CourseController;
+  public theme: ThemeController;
 
   constructor(client: AxiosInstance, locker: LockerModel) {
-    this.auth = new AuthController(client, locker);
-    this.user = new UserController(client, locker);
-    this.staticField = new StaticFieldController(client, locker);
-    this.category = new CategoryController(client, locker);
-    this.examination = new ExaminationController(client, locker);
-    this.question = new QuestionController(client, locker);
-    this.answer = new AnswerController(client, locker);
+    this.account = new AccountController(client, locker);
+    this.auth = new AuthorizationController(client, locker);
+    this.course = new CourseController(client, locker);
+    this.theme = new ThemeController(client, locker);
   }
 }
 export const api = new Api(client, mutexLocker);

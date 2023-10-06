@@ -7,7 +7,6 @@ import { FiSave, FiShare } from 'react-icons/fi';
 import { LocaleStorageKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
-import { CategoryList } from '@components/modules/category';
 import { OutputData } from '@editorjs/editorjs';
 import {
   HashtagsConstructor,
@@ -73,10 +72,6 @@ export const WritePage = () => {
         <h1 className="head-text text-left">
           {t('ui:title.creating_article')}
         </h1>
-        <CategoryList
-          selectedIds={selectedCategoryIds}
-          onChangeSelects={setSelectedCategoryIds}
-        />
         <TextEditor
           autofocus
           withHeading

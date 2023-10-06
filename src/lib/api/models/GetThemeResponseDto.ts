@@ -3,7 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
-    id?: number;
+import type { Lesson } from './Lesson';
+
+export type GetThemeResponseDto = {
     title?: string | null;
+    description?: string | null;
+    lessons?: Array<Lesson> | null;
 };

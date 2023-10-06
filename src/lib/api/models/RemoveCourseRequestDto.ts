@@ -3,7 +3,6 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
+export type RemoveCourseRequestDto = {
     id?: number;
-    title?: string | null;
 };

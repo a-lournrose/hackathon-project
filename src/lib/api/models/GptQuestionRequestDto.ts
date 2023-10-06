@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
-    id?: number;
+export type GptQuestionRequestDto = {
     title?: string | null;
+    diff?: number;
 };

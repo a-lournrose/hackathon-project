@@ -3,7 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type Role = {
-    id?: number;
-    title?: string | null;
+export type GptResponseMessageDto = {
+    text?: string | null;
+    datetime?: string;
+    requestText?: string | null;
 };

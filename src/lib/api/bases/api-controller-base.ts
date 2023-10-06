@@ -5,7 +5,6 @@ import {
   AxiosResponse,
 } from 'axios';
 import { LockerModel } from '@/lib/api/types';
-import type { BaseProcessedError } from '@lib/api/models';
 
 export abstract class ApiControllerBase<
   Template = Object,
@@ -23,13 +22,13 @@ export abstract class ApiControllerBase<
   }
 
   protected url(next?: string): string {
-    return `api/${this.controllerName}` + (next ? `/${next}` : '');
+    return `/${this.controllerName}` + (next ? `/${next}` : '');
   }
 
   protected async process<T>(
     request: Promise<T>,
     onSuccess?: (model: T) => void,
-    onError?: (error: BaseProcessedError) => void,
+    onError?: (error) => void,
     exclusive: boolean | null = null
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -43,7 +42,7 @@ export abstract class ApiControllerBase<
       return data;
     } catch (error: unknown) {
       if (onError && error instanceof AxiosError)
-        onError(error.response?.data as BaseProcessedError);
+        onError(error.response?.data as unknown);
       else throw error;
     }
   }
@@ -68,7 +67,7 @@ export abstract class ApiControllerBase<
   protected async get<T = never, R = AxiosResponse<T>, D = unknown>(
     uri: string,
     config?: AxiosRequestConfig<D>
-  ): Promise<T> {
+  ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.get(this.url(uri), { ...(config ?? {}) })
     );
@@ -77,7 +76,7 @@ export abstract class ApiControllerBase<
   protected async post<T = Template, R = AxiosResponse<T>, D = DCreate>(
     uri: string,
     config?: AxiosRequestConfig<D | undefined>
-  ): Promise<T> {
+  ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.post(this.url(uri), config?.data)
     );
@@ -87,22 +86,28 @@ export abstract class ApiControllerBase<
     T = Template,
     R = AxiosResponse<T>,
     D = DUpdatePartially
-  >(uri: string, config?: AxiosRequestConfig<D | undefined>): Promise<T> {
+  >(
+    uri: string,
+    config?: AxiosRequestConfig<D | undefined>
+  ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.patch(this.url(uri), config?.data)
     );
   }
 
-  protected async put<T = Template, R = AxiosResponse<T>, D = any>(
+  protected async put<T = Template, R = AxiosResponse<T>, D = DUpdate>(
     uri: string,
     config?: AxiosRequestConfig<D>
-  ): Promise<T> {
+  ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.put(this.url(uri), config?.data)
     );
   }
 
-  protected async remove<T = boolean>(url: string): Promise<T> {
+  protected async remove<T = boolean, D = unknown>(
+    url: string,
+    config?: AxiosRequestConfig<D | undefined>
+  ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.delete(this.url(url))
     );
