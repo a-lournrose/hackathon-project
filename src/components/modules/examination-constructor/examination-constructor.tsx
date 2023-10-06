@@ -62,10 +62,13 @@ export const ExaminationConstructor = forwardRef<
   };
 
   const handleGetAndValidateData = () => {
+    console.log(555);
     try {
       validateExam(questionGeneratorRef.current?.questions);
+      console.log(questionGeneratorRef.current?.questions, 111);
       return questionGeneratorRef.current?.questions;
     } catch (e) {
+      console.log(e, 666);
       errorHandler((e as Error).message);
       return undefined;
     }
