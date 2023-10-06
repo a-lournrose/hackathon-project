@@ -16,4 +16,5 @@ export enum RouteKeys {
   MAP,
   AUTH,
   GRADE,
+  DRAW
 }

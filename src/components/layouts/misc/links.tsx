@@ -1,10 +1,11 @@
 import { FiHome, FiClock, FiClipboard, FiList, FiUsers } from 'react-icons/fi';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { LuBuilding2 } from 'react-icons/lu';
 import { RouteKeys } from '@lib/constants';
 import { RoutePaths } from '@app/router';
 import { BsGlobe } from 'react-icons/bs';
 import { ImStatsDots } from 'react-icons/im';
+import { MdDraw } from 'react-icons/md';
 
 interface ISidebarLink {
   route: string;
@@ -27,6 +28,11 @@ export const sidebarLinks: ISidebarLink[] = [
     route: RoutePaths[RouteKeys.MAP],
     label: 'Карта',
     icon: <BsGlobe size={24} />,
+  },
+  {
+    route: RoutePaths[RouteKeys.DRAW],
+    label: 'Рисование',
+    icon: <MdDraw size={24} />,
   },
   {
     route: RoutePaths[RouteKeys.LATEST],

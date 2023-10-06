@@ -30,14 +30,7 @@ export const MapPage = () => {
                 projection: 'EPSG:3857',
                 center: [0, 0],
                 zoom: 2
-            }),
-            interactions: [
-                new Draw({
-                    source: source,
-                    type: 'LineString',
-                    freehand: true,
-                })
-            ]
+            })
         });
         setMap(initialMap);
     }
