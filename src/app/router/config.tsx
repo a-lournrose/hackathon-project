@@ -11,6 +11,7 @@ import { CoursePage } from '@components/pages/course/course-page';
 import { ThemePage } from '@components/pages/theme/theme-page';
 import { GradePage } from '@components/pages/grade';
 import { DrawPage } from '@components/pages/draw';
+import GradeIdPage from '@components/pages/grade/grade-id-page';
 
 export type RoutePropsType = RouteProps & {
   isPrivate: boolean;
@@ -36,6 +37,7 @@ export const RoutePaths = {
   [RouteKeys.LESSON_ID]: '/lesson/:id',
   [RouteKeys.AUTH]: '/auth',
   [RouteKeys.GRADE]: '/grade',
+  [RouteKeys.GRADE_ID]: '/grade/:id',
   [RouteKeys.DRAW]: '/draw',
 };
 
@@ -64,6 +66,11 @@ export const routerConfig: RoutePropsType[] = [
     isPrivate: false,
     path: RoutePaths[RouteKeys.GRADE],
     element: <GradePage />,
+  },
+  {
+    isPrivate: false,
+    path: RoutePaths[RouteKeys.GRADE_ID],
+    element: <GradeIdPage />,
   },
   {
     isPrivate: false,
