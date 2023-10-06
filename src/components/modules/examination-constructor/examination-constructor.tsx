@@ -1,5 +1,5 @@
 import React, { forwardRef, Ref, useImperativeHandle, useRef } from 'react';
-import { QuestionDto } from '@components/modules/examination-constructor/mock/question-dto';
+import { QuestionDto } from './mock/types';
 import { useTranslation } from 'react-i18next';
 import { ExaminationValidationErrorKeys } from '@components/modules/examination-constructor/constants';
 import { toast } from '@components/ui/use-toast';
