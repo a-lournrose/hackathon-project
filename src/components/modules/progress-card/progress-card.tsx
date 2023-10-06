@@ -4,10 +4,11 @@ import ProgressBar from '@components/shared/progress-bar/progress-bar';
 interface IProgressCard {
   value: number;
   once?: boolean;
+  lessons?: boolean[];
 }
 
-const ProgressCard:FC<IProgressCard> = ({value, once}) => {
-  const mark = value*100;
+const ProgressCard:FC<IProgressCard> = ({value, once, lessons}) => {
+  const mark = (value*100);
   return (
     <div className='h-72 w-full bg-white rounded-2xl my-10 p-10'>
       <div className='flex items-center justify-between'>
@@ -19,20 +20,20 @@ const ProgressCard:FC<IProgressCard> = ({value, once}) => {
           <div>
             <div className='text-primary-500'>Набрано</div>
             <div className='flex items-end space-x-2'>
-              <div className='text-[48px] font-bold leading-none text-primary-500'>{mark}</div>
+              <div className='text-[48px] font-bold leading-none text-primary-500'>{mark.toFixed()}</div>
               <div className='text-[20px] font-bold'>балла</div>
             </div>
           </div>
           {!once && <div>
             <div className='text-primary-500'>осталось</div>
             <div className='flex items-end space-x-2'>
-              <div className='text-[48px] font-bold leading-none text-primary-500'>{100 - mark}</div>
+              <div className='text-[48px] font-bold leading-none text-primary-500'>{(100 - mark).toFixed()}</div>
               <div className='text-[20px] font-bold'>баллов</div>
             </div>
           </div>}
         </div>
       </div>
-      <ProgressBar lessons={[true, true, false, false, false]}/>
+      <ProgressBar mark={mark} lessons={lessons}/>
     </div>
   );
 };

@@ -27,8 +27,8 @@ export const HomePage = () => {
         onOpenChange={setIsOpenCreateCourseDialog}
         mode="create"
       />
-      <ProgressCard value={0.78} />
-      <ProgressCard value={0.78} once/>
+      <ProgressCard value={0.78}/>
+      <ProgressCard value={0.55} once lessons={[true,true,true,false]}/>
       <div className="w-full flex items-center justify-between">
         <h1 className="head-text text-left">Мои программы обучения</h1>
 
