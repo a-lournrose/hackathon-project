@@ -8,10 +8,15 @@ import ProgressCard from '@components/modules/progress-card/progress-card';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { api } from '@lib/api/plugins';
 import { PreloaderContext } from '@app/providers/preloader';
+
 export const HomePage = () => {
   const myCoursesQuery = useQuery({
     queryKey: ['my-courses'],
-    queryFn: async () => await api.course.getMyAll(() => {}, () => {}),
+    queryFn: async () =>
+      await api.course.getMyAll(
+        () => {},
+        () => {}
+      ),
   });
 
   const allCoursesQuery = useQuery({
@@ -43,22 +48,24 @@ export const HomePage = () => {
         onOpenChange={setIsOpenCreateCourseDialog}
         mode="create"
       />
-      <ProgressCard value={0.78}/>
-      <ProgressCard value={0.55} once lessons={[true,true,true,false]}/>
+      <ProgressCard value={0.78} />
+      <ProgressCard value={0.55} once lessons={[true, true, true, false]} />
       <div className="w-full flex items-center justify-between">
         <h1 className="head-text text-left">Мои программы обучения</h1>
-        {authContext.role === 'Teacher' && <Button
-          size="lg"
-          onClick={handleOpenCreateCourseDialog}
-          variant="primary"
-        >
-          Добавить программу обучения
-        </Button>}
+        {authContext.role === 'Teacher' && (
+          <Button
+            size="lg"
+            onClick={handleOpenCreateCourseDialog}
+            variant="primary"
+          >
+            Добавить программу обучения
+          </Button>
+        )}
       </div>
       <section className="mt-9 flex flex-row flex-wrap gap-5 md:gap-10">
         {/*courses*/}
         {myCoursesQuery.data?.length ? (
-          myCoursesQuery.data.map(item => (
+          myCoursesQuery.data?.map(item => (
             <EducationEntityCard
               type="course"
               title={item.title ?? ''}

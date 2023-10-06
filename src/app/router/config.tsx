@@ -4,7 +4,6 @@ import { ReactNode } from 'react';
 import { RouteKeys } from '@lib/constants';
 import { WritePage } from '@components/pages/write';
 import { HomePage } from '@components/pages/home/home-page';
-import { UserPage } from '@components/pages/user';
 import { LatestPage } from '@components/pages/latest';
 import { MapPage } from '@components/pages/map';
 import { CoursePage } from '@components/pages/course/course-page';
@@ -112,11 +111,6 @@ export const routerConfig: RoutePropsType[] = [
     isPrivate: false,
     path: RoutePaths[RouteKeys.VACANCY_ID],
     element: <div>VACANCY_ID</div>,
-  },
-  {
-    isPrivate: false,
-    path: RoutePaths[RouteKeys.USER],
-    element: <UserPage />,
   },
   {
     isPrivate: false,

@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { cn } from '@lib/utils/tools/cn';
 import { AuthContext } from '@app/providers/auth';
 import { Avatar, AvatarFallback, AvatarImage } from '@components/ui/avatar';
-import { getAvatar, getFallback } from '@lib/utils/tools';
+import { getFallback } from '@lib/utils/tools';
 import Logo from '@assets/images/LOGO.svg';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
@@ -27,7 +27,7 @@ export const Sidebar = () => {
           // className="h-[30px] md:h-[40px] w-[77px] md:w-[102px]"
           src={Logo}
           alt="logo"
-          className='h-7'
+          className="h-7"
         />
       </div>
       <div className="flex w-full flex-1 flex-1 flex-col gap-6 px-6">
@@ -59,7 +59,9 @@ export const Sidebar = () => {
             <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>
           </Avatar>
           <h3 className="text-black font-semibold text-lg text-body1-bold truncate">
-            {authContext.user?.userInfo?.secondName} {((authContext.user?.userInfo?.firstName) ?? '')[0]}. {((authContext.user?.userInfo?.thirdName) ?? '')[0]}.
+            {authContext.user?.userInfo?.secondName}{' '}
+            {(authContext.user?.userInfo?.firstName ?? '')[0]}.{' '}
+            {(authContext.user?.userInfo?.thirdName ?? '')[0]}.
           </h3>
         </div>
       )}

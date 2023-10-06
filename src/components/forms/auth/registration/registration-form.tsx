@@ -29,7 +29,7 @@ export const RegistrationForm = (props: IRegistrationFormProps) => {
       firstName: '',
       secondName: '',
       thirdName: '',
-      nickname: '',
+      username: '',
       password: '',
       passwordConfirm: '',
     },

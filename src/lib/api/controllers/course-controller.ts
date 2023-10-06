@@ -43,7 +43,7 @@ export class CourseController extends ApiControllerCRUD<
   }
 
   async getMyAll(
-    handleSuccess: (model: LoginRequestDto) => void,
+    handleSuccess: (model: Course[]) => void,
     handleError: () => void
   ) {
     return await this.process(this.get(''), handleSuccess, handleError);

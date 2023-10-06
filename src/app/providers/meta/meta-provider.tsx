@@ -20,7 +20,7 @@ export const MetaProvider = (props: IProviderProps) => {
   const [title, setTitle] = useState<string>(import.meta.env.VITE_APP_TITLE);
 
   useEffect(() => {
-    if (routsWithDefaultTitle.includes(pathname))
+    if (routsWithDefaultTitle.some(item => item == pathname))
       setTitle(import.meta.env.VITE_APP_TITLE);
   }, [pathname]);
 

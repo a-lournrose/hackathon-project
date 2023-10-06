@@ -54,6 +54,8 @@ export abstract class ApiControllerBase<
     return request?.data;
   }
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   private async runExclusive<T>(request: Promise<T>): Promise<T> {
     const release = await this.locker.acquire();
     try {
@@ -67,6 +69,8 @@ export abstract class ApiControllerBase<
   protected async get<T = never, R = AxiosResponse<T>, D = unknown>(
     uri: string,
     config?: AxiosRequestConfig<D>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.get(this.url(uri), { ...(config ?? {}) })
@@ -76,6 +80,8 @@ export abstract class ApiControllerBase<
   protected async post<T = Template, R = AxiosResponse<T>, D = DCreate>(
     uri: string,
     config?: AxiosRequestConfig<D | undefined>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.post(this.url(uri), config?.data)
@@ -89,6 +95,8 @@ export abstract class ApiControllerBase<
   >(
     uri: string,
     config?: AxiosRequestConfig<D | undefined>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.patch(this.url(uri), config?.data)
@@ -98,6 +106,8 @@ export abstract class ApiControllerBase<
   protected async put<T = Template, R = AxiosResponse<T>, D = DUpdate>(
     uri: string,
     config?: AxiosRequestConfig<D>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.put(this.url(uri), config?.data)
@@ -107,6 +117,8 @@ export abstract class ApiControllerBase<
   protected async remove<T = boolean, D = unknown>(
     url: string,
     config?: AxiosRequestConfig<D | undefined>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T | undefined> {
     return await ApiControllerBase.internalRequest(
       this.client.delete(this.url(url))

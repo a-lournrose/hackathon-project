@@ -6,5 +6,3 @@ export const getFallback = (user?: Account): string =>
     ? user.userInfo?.firstName?.toUpperCase() +
       user.userInfo?.secondName?.toUpperCase()
     : '';
-
-export const getAvatar = (user?: unknown): string | undefined => AvatarImageSrc;

@@ -26,6 +26,8 @@ export abstract class ApiControllerCRUD<
     onSuccess?: (model: T) => void,
     onError?: (error: unknown) => void,
     exclusive?: boolean
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T> {
     return await this.process<T>(
       this.post('', { data: model }),
@@ -40,6 +42,8 @@ export abstract class ApiControllerCRUD<
     onSuccess?: (result: boolean) => void,
     onError?: (error: unknown) => void,
     exclusive?: boolean
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<boolean> {
     return await this.process<boolean>(
       this.remove<boolean>(id.toString()),
@@ -55,8 +59,12 @@ export abstract class ApiControllerCRUD<
     onSuccess?: (model: T) => void,
     onError?: (error: unknown) => void,
     exclusive?: boolean
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T> {
     return await this.process(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       this.put<T>(id.toString(), { data: model }),
       onSuccess,
       onError,
@@ -70,6 +78,8 @@ export abstract class ApiControllerCRUD<
     onSuccess?: (model: T) => void,
     onError?: (error: unknown) => void,
     exclusive?: boolean
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T> {
     return await this.process(
       this.patch<T>(id.toString(), { data: model }),

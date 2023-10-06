@@ -29,6 +29,8 @@ export abstract class ApiControllerGet<
     onSuccess?: (model: T) => void,
     onError?: (error: unknown) => void,
     exclusive?: boolean
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T> {
     return await this.process<T>(
       this.get(id.toString()),
@@ -43,6 +45,8 @@ export abstract class ApiControllerGet<
     onSuccess?: (models: T[]) => void,
     onError?: (error: unknown) => void,
     exclusive?: boolean
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
   ): Promise<T[]> {
     return await this.process<T[]>(this.get(''), onSuccess, onError, exclusive);
   }

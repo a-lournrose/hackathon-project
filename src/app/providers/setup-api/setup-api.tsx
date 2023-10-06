@@ -7,12 +7,12 @@ import { api } from '@lib/api/plugins';
 export const SetupApi = (): null => {
   const navigate = useNavigate();
   const onRefreshExpired = () => navigate(RoutePaths[RouteKeys.HOME]);
-  const onAccessExpired = async () => {
-    localStorage.removeItem(LocaleStorageKeys.JWT);
-    const { access } = await api.auth.refresh();
-    localStorage.setItem(LocaleStorageKeys.JWT, access);
-  };
-  setupResponseInterceptors(onRefreshExpired, onAccessExpired);
+  // const onAccessExpired = async () => {
+  //   localStorage.removeItem(LocaleStorageKeys.JWT);
+  //   const { access } = await api.auth.refresh();
+  //   localStorage.setItem(LocaleStorageKeys.JWT, access);
+  // };
+  setupResponseInterceptors(onRefreshExpired, async () => {});
 
   return null;
 };
