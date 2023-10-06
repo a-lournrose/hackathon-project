@@ -21,14 +21,14 @@ const ProgressCard:FC<IProgressCard> = ({value, once, lessons}) => {
             <div className='text-primary-500'>Набрано</div>
             <div className='flex items-end space-x-2'>
               <div className='text-[48px] font-bold leading-none text-primary-500'>{mark.toFixed()}</div>
-              <div className='text-[20px] font-bold'>балла</div>
+              <div className='text-[20px] font-bold text-lime'>балла</div>
             </div>
           </div>
           {!once && <div>
             <div className='text-primary-500'>осталось</div>
             <div className='flex items-end space-x-2'>
               <div className='text-[48px] font-bold leading-none text-primary-500'>{(100 - mark).toFixed()}</div>
-              <div className='text-[20px] font-bold'>баллов</div>
+              <div className='text-[20px] font-bold text-lime'>баллов</div>
             </div>
           </div>}
         </div>

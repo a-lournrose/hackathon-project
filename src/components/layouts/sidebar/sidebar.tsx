@@ -26,6 +26,7 @@ export const Sidebar = () => {
           // className="h-[30px] md:h-[40px] w-[77px] md:w-[102px]"
           src={Logo}
           alt="logo"
+          className='h-7'
         />
       </div>
       <div className="flex w-full flex-1 flex-1 flex-col gap-6 px-6">
