@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import Map from 'ol/Map';
@@ -17,6 +18,7 @@ import VectorLayer from 'ol/layer/Vector';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import VectorSource from 'ol/source/Vector';
+import 'ol/ol.css'
 
 export const MapPage = () => {
   const [map, setMap] = useState(undefined);
@@ -66,3 +68,4 @@ export const MapPage = () => {
     </div>
   );
 };
+

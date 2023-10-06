@@ -12,7 +12,6 @@ const routsWithDefaultTitle = [
   RoutePaths[RouteKeys.LATEST],
   RoutePaths[RouteKeys.SUBSCRIPTIONS],
   RoutePaths[RouteKeys.WRITE],
-  RoutePaths[RouteKeys.VACANCY],
 ];
 
 export const MetaProvider = (props: IProviderProps) => {

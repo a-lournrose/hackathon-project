@@ -8,9 +8,9 @@ export const Router = () => {
   return (
     <Routes>
       <Route element={<RootLayout />}>
-        {routerConfig.map(route => (
+        {routerConfig.map((route, index) => (
           <Route
-            key={route.path}
+            key={route.path + index}
             path={route.path}
             element={
               <ProtectedRoute

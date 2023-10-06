@@ -18,4 +18,13 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@editorjs/code'],
   },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+    rollupOptions: {
+      external: ['/ol/Map'],
+    },
+  },
 });
+

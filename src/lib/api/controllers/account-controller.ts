@@ -11,7 +11,7 @@ export class AccountController extends ApiControllerCRUD<
   unknown
 > {
   constructor(client: AxiosInstance, lockerModel: LockerModel) {
-    super(client, lockerModel, 'Account');
+    super(client, lockerModel, '');
   }
 
   async getMe(

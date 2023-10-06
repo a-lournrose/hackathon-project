@@ -4,6 +4,9 @@ import { ThemeSchema } from '@lib/utils/validations/theme-schema';
 import { ThemeForm } from '@components/forms/theme/create-edit-theme-form';
 import { Theme } from '@lib/api/models';
 import { api, client } from '@lib/api/plugins';
+import { useContext } from 'react';
+import { EducationContext } from '@app/providers/education/education-context';
+import { toast } from '@components/ui/use-toast';
 
 type CourseDialogMode = 'edit' | 'create';
 
@@ -14,16 +17,39 @@ interface ICreateEditCourseDialogProps extends IBaseDialogProps {
 }
 //TODO add models
 export const CreateEditThemeDialog = (props: ICreateEditCourseDialogProps) => {
+  const educationContext = useContext(EducationContext);
   const handleCreate = async (data: Theme) => {
-    await api.theme.create({themeId: 0, ...data});
+    educationContext.setThemes([
+      ...educationContext.themes,
+      {
+        ...data,
+        id: Math.max(...educationContext.themes.map(item => item.id)) + 1,
+      },
+    ]);
+    toast({
+      variant: 'success',
+      title: 'Изменения сохранены!',
+    });
+    props.onOpenChange(false);
+    // await api.theme.create({themeId: 0, ...data});
   };
 
   const handleEdite = async (data: Theme) => {
-    console.log(data)
-    switch (props.mode) {
-      case 'edit':
-        await client.put('/Theme', data);
-    }
+    educationContext.setThemes([
+      ...educationContext.themes.map(item =>
+        item.id == props.defaultValue.id ? { ...item, ...data } : item
+      ),
+    ]);
+    toast({
+      variant: 'success',
+      title: 'Изменения сохранены!',
+    });
+    props.onOpenChange(false);
+    // console.log(data)
+    // switch (props.mode) {
+    //   case 'edit':
+    //     await client.put('/Theme', data);
+    // }
   };
   // TODO: после подключения танстака переинвалидировать кэш
   const handleSubmit = (data: Theme) => {

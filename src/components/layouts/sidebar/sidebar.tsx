@@ -10,6 +10,8 @@ import Logo from '@assets/images/LOGO.svg';
 import { RoutePaths } from '@app/router';
 import { RouteKeys } from '@lib/constants';
 import AvatarImageSrc from '@assets/images/Aavatar.png';
+import { Button } from '@components/ui/button';
+import { FiLogOut } from 'react-icons/fi';
 
 export const Sidebar = () => {
   const navigate = useNavigate();
@@ -19,6 +21,11 @@ export const Sidebar = () => {
 
   const handleClickLink = (route: string) => () => navigate(route);
   const onClickLogo = () => navigate(RoutePaths[RouteKeys.HOME]);
+
+  const handleLogout = () => {
+    authContext.setUser(undefined);
+    authContext.setAccessToken(undefined);
+  };
 
   return (
     <section className="custom-scrollbar leftsidebar">
@@ -53,16 +60,21 @@ export const Sidebar = () => {
         })}
       </div>
       {authContext.isAuth && (
-        <div className="px-6 flex items-center gap-2">
-          <Avatar>
-            <AvatarImage src={AvatarImageSrc} />
-            <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>
-          </Avatar>
-          <h3 className="text-black font-semibold text-lg text-body1-bold truncate">
-            {authContext.user?.userInfo?.secondName}{' '}
-            {(authContext.user?.userInfo?.firstName ?? '')[0]}.{' '}
-            {(authContext.user?.userInfo?.thirdName ?? '')[0]}.
-          </h3>
+        <div className="px-6 flex w-full items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Avatar>
+              <AvatarImage src={AvatarImageSrc} />
+              <AvatarFallback>{getFallback(authContext.user)}</AvatarFallback>
+            </Avatar>
+            <h3 className="text-black font-semibold text-lg text-body1-bold truncate">
+              {authContext.user?.userInfo?.secondName}{' '}
+              {(authContext.user?.userInfo?.firstName ?? '')[0]}.{' '}
+              {(authContext.user?.userInfo?.thirdName ?? '')[0]}.
+            </h3>
+          </div>
+          <Button onClick={handleLogout} variant="ghost" size="icon-md">
+            <FiLogOut size={25} />
+          </Button>
         </div>
       )}
       {/*<LogoutTrigger from="sidebar" />*/}

@@ -22,7 +22,7 @@ export const AuthProvider = (props: IProviderProps) => {
     handleSetAccessToken(undefined);
   };
 
-  const { isLoading, isFetching } = useQuery({
+  const { isLoading, isFetching, refetch } = useQuery({
     queryKey: [QueryKeys.GET_ME],
     queryFn: async () => await api.account.getMe(handleSuccess, handleError),
     enabled: !user && !!accessToken,
@@ -50,6 +50,10 @@ export const AuthProvider = (props: IProviderProps) => {
   useEffect(() => {
     preloader.setVisible(isFetching);
   }, [isFetching]);
+
+  useEffect(() => {
+    if (accessToken && !user && !isFetching) refetch();
+  }, [accessToken, user]);
 
   return (
     <AuthContext.Provider

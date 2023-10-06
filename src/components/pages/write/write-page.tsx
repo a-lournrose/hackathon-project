@@ -1,9 +1,9 @@
-import React, { Ref, useRef, useState } from 'react';
+import React, { Ref, useContext, useRef, useState } from 'react';
 import { TextEditor } from '@components/modules/text-editor';
 import type { ITextEditorForwardRef } from '@components/modules/text-editor';
 import { Button } from '@components/ui/button';
 import { useTranslation } from 'react-i18next';
-import { FiSave, FiShare } from 'react-icons/fi';
+import { FiChevronLeft, FiSave, FiShare } from 'react-icons/fi';
 import { LocaleStorageKeys } from '@lib/constants';
 import { checkBlocksLength } from '@lib/utils/validations/text-editor';
 import { toast } from '@components/ui/use-toast';
@@ -12,6 +12,8 @@ import { IHashtagsConstructorForwardRef } from '@components/modules/hashtags-con
 import { LessonContainer } from '@components/shared/lesson-container/lesson-container';
 import { ExaminationConstructor } from '@components/modules/examination-constructor';
 import { IExaminationConstructorForwardRef } from '@components/modules/examination-constructor/examination-constructor';
+import { useNavigate } from 'react-router-dom';
+import { EducationContext } from '@app/providers/education/education-context';
 
 export const WritePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -20,7 +22,7 @@ export const WritePage = () => {
   const hashtagsConstructorRef = useRef<IHashtagsConstructorForwardRef>();
   const examinationRef = useRef<IExaminationConstructorForwardRef>();
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const validationForPublish = (data?: OutputData) => {
     if (!data) throw new Error();
     if (!checkBlocksLength(data))
@@ -28,29 +30,30 @@ export const WritePage = () => {
     // if (!selectedCategoryIds.length)
     //   throw new Error('validation:error.no_category_selected');
   };
+  const educationContext = useContext(EducationContext);
 
-  const handleSaveAsDraft = async () => {
-    try {
-      const data = await editorRef.current?.onGetData();
-      validationForPublish(data);
-      localStorage.setItem(
-        LocaleStorageKeys.DRAFT,
-        JSON.stringify({
-          categories: hashtagsConstructorRef.current?.getData(),
-          body: await editorRef.current?.onGetData(),
-        })
-      );
-      toast({
-        variant: 'success',
-        title: t('toast:info.draft_saved'),
-      });
-    } catch (e) {
-      return toast({
-        variant: 'destructive',
-        title: (e as Error).message,
-      });
-    }
-  };
+  // const handleSaveAsDraft = async () => {
+  //   try {
+  //     const data = await editorRef.current?.onGetData();
+  //     validationForPublish(data);
+  //     localStorage.setItem(
+  //       LocaleStorageKeys.DRAFT,
+  //       JSON.stringify({
+  //         categories: hashtagsConstructorRef.current?.getData(),
+  //         body: await editorRef.current?.onGetData(),
+  //       })
+  //     );
+  //     toast({
+  //       variant: 'success',
+  //       title: t('toast:info.draft_saved'),
+  //     });
+  //   } catch (e) {
+  //     return toast({
+  //       variant: 'destructive',
+  //       title: (e as Error).message,
+  //     });
+  //   }
+  // };
 
   const handlePublish = async () => {
     setIsLoading(true);
@@ -63,6 +66,18 @@ export const WritePage = () => {
         'test',
         examinationRef.current?.getAndValidateData()
       );
+      const title =
+        EditorData.blocks.find(item => item.type == 'header')?.data?.text ??
+        `Новый крок №${
+          Math.max(...educationContext.lessons.map(item => item.id)) + 1
+        }`;
+      educationContext.setLessons([
+        ...educationContext.lessons,
+        {
+          title,
+          id: Math.max(...educationContext.lessons.map(item => item.id)) + 1,
+        },
+      ]);
     } catch (e) {
       //console.log(e, 111, editorRef);
       return toast({
@@ -74,12 +89,25 @@ export const WritePage = () => {
     }
   };
 
+  const handleBack = () => navigate(-1);
+
   return (
     <>
       <div className="flex flex-col w-full gap-4">
-        <h1 className="head-text text-left">
-          {t('ui:title.creating_article')}
-        </h1>
+        <div className="flex items-center gap-2 ">
+          <Button
+            className="-ml-3"
+            onClick={handleBack}
+            variant="ghost"
+            size="icon"
+          >
+            <FiChevronLeft size={25} />
+          </Button>
+          <h1 className="head-text text-left">
+            {t('ui:title.creating_article')}
+          </h1>
+        </div>
+
         <LessonContainer
           extraChildren={
             <div className="flex flex-col gap-y-6">

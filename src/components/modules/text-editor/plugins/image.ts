@@ -14,9 +14,9 @@ export const imagePlugin: ToolConstructable | ToolSettings = {
   class: ImageTool,
   config: {
     endpoints: {
-      byFile: import.meta.env.VITE_API_BASE_URL + 'api/static-field/editor-js',
+      byFile: import.meta.env.VITE_API_BASE_URL + '/Aws',
     },
-    field: 'image',
+    field: 'formFile',
     types: 'image/*',
     additionalRequestHeaders: {
       authorization: `Bearer ${localStorage.getItem(LocaleStorageKeys.JWT)}`,

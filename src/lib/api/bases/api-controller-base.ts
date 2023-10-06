@@ -22,6 +22,8 @@ export abstract class ApiControllerBase<
   }
 
   protected url(next?: string): string {
+    if (this.controllerName == '')
+      return `/${this.controllerName}` + (next ? `${next}` : '');
     return `/${this.controllerName}` + (next ? `/${next}` : '');
   }
 

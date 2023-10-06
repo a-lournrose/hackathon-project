@@ -8,6 +8,7 @@ export interface AnswerDto {
 export interface QuestionDto {
   id: number;
   title: string;
+  imageSrc?: string;
   answers: AnswerDto[];
   testId?: number;
 }

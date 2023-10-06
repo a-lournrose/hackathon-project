@@ -18,7 +18,7 @@ export const LocaleProvider = (props: IProviderProps) => {
     .use(initReactI18next)
     .init({
       debug: false,
-      lng: localStorage.getItem(LocaleStorageKeys.LOCALE) ?? LocaleKeys.EN,
+      lng: localStorage.getItem(LocaleStorageKeys.LOCALE) ?? LocaleKeys.RU,
       supportedLngs: [LocaleKeys.RU, LocaleKeys.EN],
       interpolation: {
         escapeValue: false,

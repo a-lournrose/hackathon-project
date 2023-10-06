@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import Map from 'ol/Map';
@@ -10,9 +11,6 @@ import View from 'ol/View';
 import TileLayer from 'ol/layer/Tile';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-import Draw from 'ol/interaction/Draw';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-ignore
 import XYZ from 'ol/source/XYZ';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
@@ -20,6 +18,8 @@ import VectorLayer from 'ol/layer/Vector';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
 import VectorSource from 'ol/source/Vector';
+import { Draw } from 'ol/interaction';
+import 'ol/ol.css'
 
 export const DrawPage = () => {
   const [map, setMap] = useState(undefined);
@@ -76,3 +76,4 @@ export const DrawPage = () => {
     </div>
   );
 };
+

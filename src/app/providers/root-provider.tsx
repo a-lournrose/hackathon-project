@@ -9,6 +9,7 @@ import { AuthProvider } from '@app/providers/auth';
 import { PreloaderProvider } from '@app/providers/preloader';
 import { Toaster } from '@components/ui/toaster';
 import { QueryProvider } from '@app/providers/query/query-provider';
+import { EducationProvider } from '@app/providers/education/education-provider';
 
 export const RootProvider = (props: IProviderProps) => {
   return (
@@ -17,15 +18,17 @@ export const RootProvider = (props: IProviderProps) => {
         <ThemeProvider>
           <LocaleProvider>
             <LocationHistoryProvider>
-              <PreloaderProvider>
-                <AuthProvider>
-                  <SetupApi />
-                  <Toaster />
-                  <ErrorBoundaryProvider>
-                    {props.children}
-                  </ErrorBoundaryProvider>
-                </AuthProvider>
-              </PreloaderProvider>
+              <EducationProvider>
+                <PreloaderProvider>
+                  <AuthProvider>
+                    <SetupApi />
+                    <Toaster />
+                    <ErrorBoundaryProvider>
+                      {props.children}
+                    </ErrorBoundaryProvider>
+                  </AuthProvider>
+                </PreloaderProvider>
+              </EducationProvider>
             </LocationHistoryProvider>
           </LocaleProvider>
         </ThemeProvider>
